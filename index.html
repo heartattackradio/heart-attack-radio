@@ -1,617 +1,1061 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>HEART ATTACK RADIO</title>
+<title>heart attack radio</title>
 
-  <style>
-    body {
+<style>
+
+/* =========================================================
+   HEART ATTACK RADIO // 2026
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Special+Elite&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #000000;
+  color: #ffffff;
+  font-family: "Courier New", Courier, monospace;
+  overflow-x: hidden;
   text-transform: lowercase;
 }
-    * {
-      box-sizing: border-box;
-    }
 
-    html {
-      scroll-behavior: smooth;
-    }
+/* =========================================================
+   crt / scanlines
+   ========================================================= */
 
-    body {
-      margin: 0;
-      background:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,0.025) 0px,
-          rgba(255,255,255,0.025) 1px,
-          transparent 1px,
-          transparent 4px
-        ),
-        #050505;
-      color: #f5f5f5;
-      font-family: "Courier New", Courier, monospace;
-      overflow-x: hidden;
-    }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.035) 0px,
+      rgba(255,255,255,0.035) 1px,
+      transparent 1px,
+      transparent 4px
+    );
 
-    /* CRT EFFECT */
+  animation: scanmove 0.15s linear infinite;
+}
 
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9999;
-      background:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,0.025) 0px,
-          rgba(255,255,255,0.025) 1px,
-          transparent 1px,
-          transparent 3px
-        );
-      mix-blend-mode: overlay;
-    }
+@keyframes scanmove {
+  from {
+    transform: translateY(0);
+  }
 
-    .page {
-      width: min(1100px, 94%);
-      margin: 20px auto;
-      border: 3px solid #d71920;
-      box-shadow:
-        0 0 0 5px #050505,
-        0 0 0 8px #f5f5f5,
-        0 0 25px rgba(215,25,32,0.35);
-      background: #090909;
-    }
+  to {
+    transform: translateY(4px);
+  }
+}
 
-    /* TOP BAR */
+/* =========================================================
+   screen flicker
+   ========================================================= */
 
-    .topbar {
-      background: #d71920;
-      color: #fff;
-      padding: 7px 12px;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
 
-    /* HEADER */
+  background: rgba(24,238,28,0.015);
 
-    header {
-      padding: 30px 20px 25px;
-      text-align: center;
-      border-bottom: 3px dashed #fff;
-      background:
-        radial-gradient(circle at center, #222 0%, #090909 65%);
-    }
+  animation: flicker 0.12s infinite;
+}
 
-    .logo {
-      width: min(480px, 90%);
-      max-height: 260px;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto 15px;
-      filter:
-        drop-shadow(4px 4px 0 #d71920)
-        drop-shadow(-2px -2px 0 #fff);
-    }
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .7; }
+}
 
-    .tagline {
-      color: #d71920;
-      font-weight: bold;
-      font-size: clamp(14px, 3vw, 22px);
-      letter-spacing: 2px;
-    }
+/* =========================================================
+   main frame
+   ========================================================= */
 
-    .location {
-      margin-top: 8px;
-      color: #78b82a;
-      font-size: 13px;
-      letter-spacing: 2px;
-    }
+.page {
+  width: min(1120px, 94%);
+  margin: 18px auto;
 
-    /* NAV */
+  background: #000000;
 
-    nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      border-bottom: 3px solid #fff;
-      background: #111;
-    }
+  border: 4px solid #d71920;
 
-    nav a {
-      padding: 12px 18px;
-      border-right: 1px solid #555;
-      font-size: 13px;
-      font-weight: bold;
-      transition: 0.15s;
-    }
+  box-shadow:
+    0 0 0 3px #000,
+    0 0 0 6px #18ee1c,
+    0 0 25px rgba(24,238,28,.35),
+    0 0 50px rgba(215,25,32,.25);
+}
 
-    nav a:hover {
-      background: #d71920;
-      color: #fff;
-    }
+/* =========================================================
+   top ticker
+   ========================================================= */
 
-    /* HERO */
+.topbar {
+  background: #d71920;
+  color: #ffffff;
 
-    .hero {
-      padding: 35px 20px;
-      text-align: center;
-      border-bottom: 3px dashed #d71920;
-    }
+  height: 31px;
 
-    .hero-gif {
-      width: min(700px, 100%);
-      max-height: 420px;
-      object-fit: contain;
-      border: 3px solid #fff;
-      background: #000;
-      display: block;
-      margin: 0 auto 25px;
-      box-shadow: 8px 8px 0 #d71920;
-    }
+  display: flex;
+  align-items: center;
 
-    .hero h1 {
-      font-size: clamp(28px, 6vw, 58px);
-      margin: 10px 0;
-      color: #fff;
-      text-transform: uppercase;
-      text-shadow: 4px 4px #d71920;
-    }
+  overflow: hidden;
 
-    .hero p {
-      max-width: 750px;
-      margin: 15px auto;
-      line-height: 1.7;
-      color: #ccc;
-      font-size: 14px;
-    }
+  font-family: "VT323", monospace;
+  font-size: 18px;
 
-    /* LIVE PLAYER */
+  border-bottom: 3px solid #18ee1c;
+}
 
-    .player {
-      margin: 25px auto;
-      max-width: 700px;
-      border: 3px solid #78b82a;
-      background: #050505;
-      padding: 20px;
-      box-shadow: 6px 6px 0 #d71920;
-    }
+.ticker {
+  white-space: nowrap;
+  animation: ticker 18s linear infinite;
+}
 
-    .live {
-      color: #d71920;
-      font-weight: bold;
-      font-size: 18px;
-      margin-bottom: 15px;
-      animation: blink 1s infinite;
-    }
+@keyframes ticker {
+  from {
+    transform: translateX(100%);
+  }
 
-    @keyframes blink {
-      50% {
-        opacity: 0.4;
-      }
-    }
+  to {
+    transform: translateX(-100%);
+  }
+}
 
-    .player iframe {
-      width: 100%;
-      min-height: 110px;
-      border: 2px solid #fff;
-      background: #111;
-    }
+/* =========================================================
+   header
+   ========================================================= */
 
-    /* SECTIONS */
+header {
+  padding: 30px 20px 25px;
+  text-align: center;
 
-    section {
-      padding: 35px 25px;
-      border-bottom: 3px dashed #555;
-    }
+  background: #000000;
 
-    .section-title {
-      display: inline-block;
-      background: #d71920;
-      color: #fff;
-      padding: 8px 12px;
-      margin-bottom: 20px;
-      font-size: 20px;
-      font-weight: bold;
-      box-shadow: 5px 5px 0 #78b82a;
-    }
+  border-bottom: 4px dashed #18ee1c;
 
-    .section-text {
-      line-height: 1.8;
-      color: #ddd;
-      font-size: 14px;
-      max-width: 850px;
-    }
+  position: relative;
+}
 
-    /* CARDS */
+/* little corner graphics */
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      margin-top: 20px;
-    }
+header::before {
+  content: "★ ★ ★ ★ ★";
+  position: absolute;
+  top: 7px;
+  left: 10px;
 
-    .card {
-      border: 2px solid #fff;
-      padding: 20px;
-      background: #101010;
-      transition: 0.15s;
-    }
+  color: #d71920;
+  font-size: 11px;
 
-    .card:hover {
-      transform: translate(-3px, -3px);
-      box-shadow: 6px 6px 0 #d71920;
-    }
+  animation: blink 1s infinite;
+}
 
-    .card h3 {
-      margin-top: 0;
-      color: #78b82a;
-    }
+header::after {
+  content: "★ ★ ★ ★ ★";
+  position: absolute;
+  top: 7px;
+  right: 10px;
 
-    .card p {
-      color: #bbb;
-      line-height: 1.6;
-      font-size: 13px;
-    }
+  color: #18ee1c;
+  font-size: 11px;
 
-    /* SOCIAL LINKS */
+  animation: blink 1.4s infinite;
+}
 
-    .socials {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-top: 20px;
-    }
+/* =========================================================
+   logo
+   ========================================================= */
 
-    .social {
-      border: 2px solid #fff;
-      padding: 16px 8px;
-      text-align: center;
-      font-weight: bold;
-      background: #111;
-    }
+.logo {
+  width: min(480px, 90%);
+  max-height: 260px;
 
-    .social:hover {
-      background: #d71920;
-    }
+  object-fit: contain;
 
-    /* BUTTONS */
+  display: block;
 
-    .button {
-      display: inline-block;
-      padding: 12px 18px;
-      margin: 7px 5px 0 0;
-      border: 2px solid #fff;
-      background: #d71920;
-      color: #fff;
-      font-weight: bold;
-      box-shadow: 4px 4px 0 #78b82a;
-      transition: 0.15s;
-    }
+  margin: 0 auto 18px;
 
-    .button:hover {
-      transform: translate(3px, 3px);
-      box-shadow: none;
-    }
+  filter:
+    drop-shadow(5px 5px 0 #d71920)
+    drop-shadow(-2px -2px 0 #18ee1c);
+}
 
-    /* FOOTER */
+/* =========================================================
+   tagline
+   ========================================================= */
 
-    footer {
-      padding: 30px 20px;
-      text-align: center;
-      background: #000;
-      color: #888;
-      font-size: 11px;
-      line-height: 1.8;
-    }
+.tagline {
+  color: #ffffff;
 
-    footer strong {
-      color: #d71920;
-    }
+  font-family: "Courier New", monospace;
 
-    .panama {
-      color: #78b82a;
-      font-weight: bold;
-    }
+  font-size: clamp(12px, 2.5vw, 18px);
 
-    /* MOBILE */
+  letter-spacing: 2px;
 
-    @media (max-width: 700px) {
+  font-weight: bold;
+}
 
-      .page {
-        width: 94%;
-        margin: 10px auto;
-      }
+/* =========================================================
+   location
+   ========================================================= */
 
-      .grid {
-        grid-template-columns: 1fr;
-      }
+.location {
+  margin-top: 10px;
 
-      .socials {
-        grid-template-columns: repeat(2, 1fr);
-      }
+  color: #18ee1c;
 
-      nav a {
-        flex: 1 1 50%;
-        text-align: center;
-        border-bottom: 1px solid #555;
-      }
+  font-family: "VT323", monospace;
 
-      section {
-        padding: 28px 17px;
-      }
+  font-size: 20px;
 
-      .hero {
-        padding: 25px 12px;
-      }
+  letter-spacing: 2px;
 
-      .hero-gif {
-        box-shadow: 5px 5px 0 #d71920;
-      }
+  text-shadow:
+    0 0 5px #18ee1c,
+    0 0 12px #18ee1c;
+}
 
-      .topbar {
-        justify-content: center;
-        text-align: center;
-      }
-    }
-  </style>
+/* =========================================================
+   nav
+   ========================================================= */
+
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  background: #050505;
+
+  border-bottom: 4px solid #d71920;
+}
+
+nav a {
+  padding: 12px 20px;
+
+  color: #18ee1c;
+
+  border-right: 1px solid #333;
+
+  font-family: "VT323", monospace;
+
+  font-size: 20px;
+
+  transition: .15s;
+
+  text-shadow: 0 0 5px #18ee1c;
+}
+
+nav a:hover {
+  background: #18ee1c;
+  color: #000000;
+
+  text-shadow: none;
+}
+
+/* =========================================================
+   hero
+   ========================================================= */
+
+.hero {
+  padding: 35px 20px;
+
+  text-align: center;
+
+  border-bottom: 4px dashed #d71920;
+
+  background: #000000;
+}
+
+/* =========================================================
+   gif
+   ========================================================= */
+
+.hero-gif {
+  width: min(720px, 100%);
+
+  max-height: 430px;
+
+  object-fit: contain;
+
+  display: block;
+
+  margin: 0 auto 30px;
+
+  border: 4px solid #18ee1c;
+
+  background: #000000;
+
+  box-shadow:
+    8px 8px 0 #d71920,
+    0 0 25px rgba(24,238,28,.35);
+}
+
+/* =========================================================
+   MAIN HEART ATTACK RADIO TITLE
+   ========================================================= */
+
+.hero h1 {
+
+  margin: 10px 0 12px;
+
+  color: #18ee1c;
+
+  /*
+     Oliver Printype first.
+     Ironwood second.
+     Special Elite / VT323 are fallbacks.
+  */
+
+  font-family:
+    "Oliver Printype",
+    "Ironwood",
+    "Special Elite",
+    "VT323",
+    monospace;
+
+  font-size: clamp(38px, 8vw, 82px);
+
+  letter-spacing: 2px;
+
+  line-height: .9;
+
+  text-transform: lowercase;
+
+  text-shadow:
+    4px 4px 0 #d71920,
+    0 0 5px #18ee1c,
+    0 0 15px #18ee1c;
+
+  animation: neonpulse 1.8s infinite alternate;
+}
+
+@keyframes neonpulse {
+
+  from {
+    text-shadow:
+      4px 4px 0 #d71920,
+      0 0 5px #18ee1c;
+  }
+
+  to {
+    text-shadow:
+      4px 4px 0 #d71920,
+      0 0 8px #18ee1c,
+      0 0 25px #18ee1c,
+      0 0 45px rgba(24,238,28,.5);
+  }
+
+}
+
+/* =========================================================
+   tagline stays white
+   ========================================================= */
+
+.hero p {
+  max-width: 760px;
+
+  margin: 15px auto;
+
+  line-height: 1.7;
+
+  color: #ffffff;
+
+  font-size: 14px;
+}
+
+/* =========================================================
+   moving divider
+   ========================================================= */
+
+.signal {
+  margin: 25px auto;
+
+  height: 10px;
+
+  max-width: 800px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #d71920 0px,
+      #d71920 25px,
+      #18ee1c 25px,
+      #18ee1c 50px,
+      #000 50px,
+      #000 75px
+    );
+
+  background-size: 150px 100%;
+
+  animation: signalmove .8s linear infinite;
+}
+
+@keyframes signalmove {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 150px 0;
+  }
+}
+
+/* =========================================================
+   player
+   ========================================================= */
+
+.player {
+
+  margin: 30px auto;
+
+  max-width: 720px;
+
+  border: 4px solid #18ee1c;
+
+  background: #000000;
+
+  padding: 20px;
+
+  box-shadow:
+    8px 8px 0 #d71920,
+    0 0 20px rgba(24,238,28,.25);
+}
+
+.live {
+
+  color: #d71920;
+
+  font-family: "VT323", monospace;
+
+  font-size: 27px;
+
+  margin-bottom: 15px;
+
+  text-shadow: 0 0 8px #d71920;
+
+  animation: blink .8s infinite;
+}
+
+@keyframes blink {
+
+  0%, 45% {
+    opacity: 1;
+  }
+
+  50%, 100% {
+    opacity: .35;
+  }
+
+}
+
+.player iframe {
+
+  width: 100%;
+
+  min-height: 110px;
+
+  border: 3px solid #ffffff;
+
+  background: #000000;
+}
+
+/* =========================================================
+   buttons
+   ========================================================= */
+
+.button {
+
+  display: inline-block;
+
+  padding: 12px 20px;
+
+  margin: 10px 5px 0 0;
+
+  border: 3px solid #ffffff;
+
+  background: #d71920;
+
+  color: #ffffff;
+
+  font-family: "VT323", monospace;
+
+  font-size: 21px;
+
+  box-shadow: 5px 5px 0 #18ee1c;
+
+  transition: .15s;
+}
+
+.button:hover {
+
+  background: #18ee1c;
+
+  color: #000000;
+
+  box-shadow: 5px 5px 0 #d71920;
+
+  transform: translate(3px,3px);
+}
+
+/* =========================================================
+   sections
+   ========================================================= */
+
+section {
+
+  padding: 38px 25px;
+
+  border-bottom: 4px dashed #d71920;
+
+  background: #000000;
+}
+
+.section-title {
+
+  display: inline-block;
+
+  background: #d71920;
+
+  color: #ffffff;
+
+  padding: 8px 13px;
+
+  margin-bottom: 20px;
+
+  font-family: "VT323", monospace;
+
+  font-size: 25px;
+
+  box-shadow: 6px 6px 0 #18ee1c;
+}
+
+.section-text {
+
+  line-height: 1.8;
+
+  color: #dddddd;
+
+  font-size: 14px;
+
+  max-width: 850px;
+}
+
+.panama {
+
+  color: #18ee1c;
+
+  font-weight: bold;
+
+  text-shadow: 0 0 7px #18ee1c;
+}
+
+/* =========================================================
+   cards
+   ========================================================= */
+
+.grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(2,1fr);
+
+  gap: 18px;
+
+  margin-top: 20px;
+}
+
+.card {
+
+  border: 3px solid #ffffff;
+
+  padding: 20px;
+
+  background: #000000;
+
+  position: relative;
+
+  transition: .15s;
+
+}
+
+.card::before {
+
+  content: ">>";
+
+  position: absolute;
+
+  top: 8px;
+
+  right: 10px;
+
+  color: #d71920;
+
+  animation: blink 1s infinite;
+}
+
+.card:hover {
+
+  border-color: #18ee1c;
+
+  transform: translate(-4px,-4px);
+
+  box-shadow:
+    7px 7px 0 #d71920;
+}
+
+.card h3 {
+
+  margin-top: 0;
+
+  color: #18ee1c;
+
+  font-family: "VT323", monospace;
+
+  font-size: 28px;
+
+  text-shadow: 0 0 8px #18ee1c;
+}
+
+.card p {
+
+  color: #bbb;
+
+  line-height: 1.6;
+
+  font-size: 13px;
+}
+
+/* =========================================================
+   social
+   ========================================================= */
+
+.socials {
+
+  display: grid;
+
+  grid-template-columns: repeat(4,1fr);
+
+  gap: 10px;
+
+  margin-top: 20px;
+}
+
+.social {
+
+  border: 3px solid #ffffff;
+
+  padding: 16px 8px;
+
+  text-align: center;
+
+  font-family: "VT323", monospace;
+
+  font-size: 21px;
+
+  background: #000000;
+
+  color: #18ee1c;
+
+  transition: .15s;
+}
+
+.social:hover {
+
+  background: #d71920;
+
+  color: #ffffff;
+
+  transform: translateY(-4px);
+}
+
+/* =========================================================
+   footer
+   ========================================================= */
+
+footer {
+
+  padding: 30px 20px;
+
+  text-align: center;
+
+  background: #000000;
+
+  color: #777;
+
+  font-size: 11px;
+
+  line-height: 1.8;
+
+  border-top: 4px solid #18ee1c;
+}
+
+footer strong {
+
+  color: #d71920;
+
+  font-family: "VT323", monospace;
+
+  font-size: 25px;
+}
+
+/* =========================================================
+   mobile
+   ========================================================= */
+
+@media (max-width:700px) {
+
+  .page {
+    width: 94%;
+    margin: 10px auto;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .socials {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  nav a {
+    flex: 1 1 50%;
+    text-align: center;
+    border-bottom: 1px solid #333;
+  }
+
+  section {
+    padding: 28px 17px;
+  }
+
+  .hero {
+    padding: 25px 12px;
+  }
+
+  .hero-gif {
+    box-shadow:
+      5px 5px 0 #d71920,
+      0 0 15px rgba(24,238,28,.3);
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 12vw, 65px);
+  }
+
+  .topbar {
+    justify-content: center;
+  }
+
+}
+
+</style>
 </head>
 
 <body>
 
-  <div class="page">
+<div class="page">
 
-    <!-- TOP BAR -->
+  <!-- top scrolling message -->
 
-    <div class="topbar">
-      <span>*** HEART ATTACK RADIO ***</span>
-      <span>EST. 1998 AF // AUSTIN TX</span>
+  <div class="topbar">
+
+    <div class="ticker">
+      *** heart attack radio *** // 110 // austin texas //
+      underground transmission // stay weird // stay loud //
+      *** heart attack radio ***
     </div>
 
-    <!-- HEADER -->
+  </div>
 
-    <header>
-      <img
-        src="heart-attack-logo.png"
-        alt="Heart Attack Radio Logo"
-        class="logo"
-      >
+  <!-- header -->
 
-      <div class="tagline">
-        UNDERGROUND RADIO FROM THE HEART OF THE CITY
-      </div>
+  <header>
 
-      <div class="location">
-        AUSTIN, TEXAS // PANAMA // WORLDWIDE
-      </div>
-    </header>
+    <img
+      src="heart-attack-logo.png"
+      alt="heart attack radio logo"
+      class="logo"
+    >
 
-    <!-- NAV -->
-
-    <nav>
-      <a href="#listen">LISTEN</a>
-      <a href="#about">ABOUT</a>
-      <a href="#shows">SHOWS</a>
-      <a href="#merch">MERCH</a>
-      <a href="#social">SOCIAL</a>
-    </nav>
-
-    <!-- HERO -->
-
-    <div class="hero">
-
-      <img
-        src="heart-attack-gif.gif"
-        alt="Heart Attack Radio"
-        class="hero-gif"
-      >
-
-      <h1>HEART ATTACK RADIO</h1>
-
-      <p>
-        NO ALGORITHM. NO CORPORATE RADIO. NO RULES.
-        JUST MUSIC FROM THE HEART OF THE CITY.
-      </p>
-
-      <!-- RADIO PLAYER -->
-
-      <div class="player" id="listen">
-
-        <div class="live">
-          ● LIVE RADIO
-        </div>
-
-        <iframe
-          src="https://thehearttackradio.radio12345.com/"
-          title="Heart Attack Radio Live Player"
-          frameborder="0">
-        </iframe>
-
-        <a
-          class="button"
-          href="https://thehearttackradio.radio12345.com/"
-          target="_blank">
-          OPEN RADIO
-        </a>
-
-      </div>
-
+    <div class="tagline">
+      no algorithm. no corporate radio. no rules.
     </div>
 
-    <!-- ABOUT -->
+    <div class="location">
+      austin, texas 
+    </div>
 
-    <section id="about">
+  </header>
 
-      <div class="section-title">
-        // ABOUT THE STATION
+  <!-- navigation -->
+
+  <nav>
+
+    <a href="#listen">listen</a>
+    <a href="#about">about</a>
+    <a href="#shows">shows</a>
+    <a href="#merch">merch</a>
+    <a href="#social">social</a>
+
+  </nav>
+
+  <!-- hero -->
+
+  <div class="hero">
+
+    <img
+      src="heart-attack-gif.gif"
+      alt="heart attack radio"
+      class="hero-gif"
+    >
+
+    <h1>
+      heart attack radio
+    </h1>
+
+    <p>
+      no algorithm. no corporate radio. no rules.
+      breaking your dial...
+    </p>
+
+    <div class="signal"></div>
+
+    <!-- player -->
+
+    <div class="player" id="listen">
+
+      <div class="live">
+        ● live transmission
       </div>
 
-      <p class="section-text">
-        HEART ATTACK RADIO is an independent underground radio project
-        bringing together sounds from Austin, Panama and everywhere in
-        between.
-
-        <br><br>
-
-        From dancehall, reggae, salsa, cumbia and hip-hop to house,
-        disco, kompa, rock and the sounds that don't fit into a box —
-        this station exists for people who actually LOVE music.
-
-        <br><br>
-
-        <span class="panama">
-          110 PANAMEÑO // AUSTIN TEXAS // WORLDWIDE
-        </span>
-      </p>
-
-    </section>
-
-    <!-- SHOWS -->
-
-    <section id="shows">
-
-      <div class="section-title">
-        // ON AIR
-      </div>
-
-      <div class="grid">
-
-        <div class="card">
-          <h3>110 PANAMEÑO</h3>
-          <p>
-            Sounds from Panama and the Caribbean.
-            Old school, new school and everything in between.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>DANCEHALL</h3>
-          <p>
-            Dancehall, reggae and Caribbean sounds
-            from the 90s, 2000s and beyond.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>LATIN HEAT</h3>
-          <p>
-            Salsa, merengue, cumbia, reggaeton and
-            the sounds that keep the dance floor moving.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>UNDERGROUND</h3>
-          <p>
-            House, hip-hop, disco, rock and whatever
-            else deserves to be heard.
-          </p>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- MERCH -->
-
-    <section id="merch">
-
-      <div class="section-title">
-        // MERCH
-      </div>
-
-      <p class="section-text">
-        REPRESENT THE STATION.
-        LIMITED HEART ATTACK RADIO MERCH AVAILABLE NOW.
-      </p>
+      <iframe
+        src="https://thehearttackradio.radio12345.com/"
+        title="heart attack radio live player"
+        frameborder="0">
+      </iframe>
 
       <a
         class="button"
-        href="https://heartattackradio.bigcartel.com/"
+        href="https://thehearttackradio.radio12345.com/"
         target="_blank">
-        ENTER THE STORE
+        open radio
       </a>
 
-    </section>
-
-    <!-- SOCIAL -->
-
-    <section id="social">
-
-      <div class="section-title">
-        // FOLLOW THE ATTACK
-      </div>
-
-      <div class="socials">
-
-        <a
-          class="social"
-          href="https://www.instagram.com/theheartattackradio/"
-          target="_blank">
-          INSTAGRAM
-        </a>
-
-        <a
-          class="social"
-          href="https://www.tiktok.com/@theheartattackradio"
-          target="_blank">
-          TIKTOK
-        </a>
-
-        <a
-          class="social"
-          href="https://youtube.com/@theheartattackradio"
-          target="_blank">
-          YOUTUBE
-        </a>
-
-        <a
-          class="social"
-          href="https://heartattackradio.bigcartel.com/"
-          target="_blank">
-          BIG CARTEL
-        </a>
-
-      </div>
-
-    </section>
-
-    <!-- FOOTER -->
-
-    <footer>
-
-      <strong>HEART ATTACK RADIO</strong><br>
-
-      AUSTIN, TEXAS // PANAMA // WORLDWIDE
-
-      <br><br>
-
-      ©2026 HEART ATTACK RADIO<br>
-
-      <span class="panama">
-        SIXTH SENSE: FROM THE HEART OF THE CITY
-      </span>
-
-      <br><br>
-
-      THIS WEBSITE IS BEST EXPERIENCED WITH HEADPHONES.
-
-    </footer>
+    </div>
 
   </div>
+
+  <!-- about -->
+
+  <section id="about">
+
+    <div class="section-title">
+      // about the station
+    </div>
+
+    <p class="section-text">
+
+      heart attack radio is an independent underground radio 
+      bringing sounds from austin to your ears...we are the 
+      club in your radio, phone or any device & we are the home
+      of the ¨110¨.
+
+      <br><br>
+
+      110. dancehall. reggae. salsa. cumbia. hip-hop. house. disco.
+      kompa. rock. latin sounds. underground sounds. bro, the real
+      deal.
+
+      <br><br>
+
+      if it moves the people, it belongs here.
+
+      <br><br>
+
+      <span class="panama">
+        110 panameño // worldwide
+      </span>
+
+    </p>
+
+  </section>
+
+  <!-- shows -->
+
+  <section id="shows">
+
+    <div class="section-title">
+      // on air
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+
+        <h3>110 </h3>
+
+        <p>
+          this is what makes us the best.
+          p.s.a. vaney made it even better 
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>dancehall</h3>
+
+        <p>
+          the real bashment pon di radio . . .
+          
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>latin heat</h3>
+
+        <p>
+          salsa, merengue, cumbia, reggaeton &
+          much more...para las rumberas y rumberos.
+        </p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>rock the house</h3>
+            
+        <p>
+          this what you need when you want to go to
+          6th...but you are ghosting to stay home. 
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- merch -->
+
+  <section id="merch">
+
+    <div class="section-title">
+      // merch
+    </div>
+
+    <p class="section-text">
+
+      represent the station.
+
+      <br>
+
+      limited heart attack radio merch available now.
+
+    </p>
+
+    <a
+      class="button"
+      href="https://heartattackradio.bigcartel.com/"
+      target="_blank">
+      enter the store
+    </a>
+
+  </section>
+
+  <!-- socials -->
+
+  <section id="social">
+
+    <div class="section-title">
+      // follow the attack
+    </div>
+
+    <div class="socials">
+
+      <a
+        class="social"
+        href="https://www.instagram.com/theheartattackradio/"
+        target="_blank">
+        instagram
+      </a>
+
+      <a
+        class="social"
+        href="https://www.tiktok.com/@theheartattackradio"
+        target="_blank">
+        tiktok
+      </a>
+
+      <a
+        class="social"
+        href="https://youtube.com/@theheartattackradio"
+        target="_blank">
+        youtube
+      </a>
+
+      <a
+        class="social"
+        href="https://heartattackradio.bigcartel.com/"
+        target="_blank">
+        big cartel
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- footer -->
+
+  <footer>
+
+    <strong>
+      heart attack radio
+    </strong>
+
+    <br>
+
+    austin, texas //worldwide
+
+    <br><br>
+
+    © 2026 heart attack radio
+
+    <br>
+
+    <span class="panama">
+      the radio station with the #1 listeners in austin...
+    </span>
+
+    <br><br>
+
+    this website is best experienced with headphones or windows 98 perhaps.
+
+  </footer>
+
+</div>
 
 </body>
 </html>
