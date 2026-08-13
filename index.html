@@ -10,7 +10,7 @@
 
 /* =========================================================
    HEART ATTACK RADIO // 2026
-   red // white // black // yellow // a little green
+   red // white // black // neon green
    ========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=VT323&family=Special+Elite&display=swap');
@@ -25,6 +25,7 @@ html {
 
 body {
   margin: 0;
+
   background:
     radial-gradient(
       circle at 50% 20%,
@@ -231,7 +232,7 @@ header::after {
 
   right: 10px;
 
-  color: #ffd21c;
+  color: #18ee1c;
 
   font-size: 11px;
 
@@ -289,7 +290,7 @@ header::after {
 
   margin-top: 10px;
 
-  color: #ffd21c;
+  color: #18ee1c;
 
   font-family: "VT323", monospace;
 
@@ -299,7 +300,21 @@ header::after {
 
   text-shadow:
 
-    0 0 4px #ffd21c;
+    0 0 5px #18ee1c,
+
+    0 0 12px rgba(24,238,28,.35);
+
+}
+
+/* red pulsing dot */
+
+.location::after {
+
+  content: " ●";
+
+  color: #d71920;
+
+  animation: blink 1s infinite;
 
 }
 
@@ -423,17 +438,11 @@ nav a:hover {
 
   text-transform: lowercase;
 
-  /*
-     white main lettering
-     red offset
-     tiny yellow highlight
-  */
-
   text-shadow:
 
     5px 5px 0 #d71920,
 
-    -2px -2px 0 #ffd21c,
+    -2px -2px 0 #18ee1c,
 
     0 0 8px rgba(255,255,255,.25);
 
@@ -451,7 +460,7 @@ nav a:hover {
 
       5px 5px 0 #d71920,
 
-      -2px -2px 0 #ffd21c,
+      -2px -2px 0 #18ee1c,
 
       0 0 5px rgba(255,255,255,.2);
 
@@ -483,7 +492,7 @@ nav a:hover {
 
       5px 5px 0 #d71920,
 
-      -2px -2px 0 #ffd21c,
+      -2px -2px 0 #18ee1c,
 
       0 0 14px rgba(255,255,255,.35);
 
@@ -493,7 +502,6 @@ nav a:hover {
 
 /* =========================================================
    hero sentence
-   stays WHITE
    ========================================================= */
 
 .hero p {
@@ -536,9 +544,9 @@ nav a:hover {
 
       #ffffff 50px,
 
-      #ffd21c 50px,
+      #18ee1c 50px,
 
-      #ffd21c 60px,
+      #18ee1c 60px,
 
       #000000 60px,
 
@@ -662,7 +670,7 @@ nav a:hover {
 
   box-shadow:
 
-    5px 5px 0 #ffd21c;
+    5px 5px 0 #18ee1c;
 
   transition: .15s;
 
@@ -714,7 +722,7 @@ section {
 
   box-shadow:
 
-    6px 6px 0 #ffd21c;
+    6px 6px 0 #18ee1c;
 
 }
 
@@ -732,13 +740,13 @@ section {
 
 .panama {
 
-  color: #ffd21c;
+  color: #18ee1c;
 
   font-weight: bold;
 
   text-shadow:
 
-    0 0 5px rgba(255,210,28,.45);
+    0 0 5px rgba(24,238,28,.45);
 
 }
 
@@ -782,7 +790,7 @@ section {
 
   right: 10px;
 
-  color: #ffd21c;
+  color: #18ee1c;
 
   animation: blink 1s infinite;
 
@@ -868,7 +876,7 @@ section {
 
   color: #ffffff;
 
-  border-color: #ffd21c;
+  border-color: #18ee1c;
 
   transform: translateY(-4px);
 
@@ -913,16 +921,6 @@ footer strong {
 /* =========================================================
    tiny green accents
    ========================================================= */
-
-.location::after {
-
-  content: " ●";
-
-  color: #18ee1c;
-
-  animation: blink 1s infinite;
-
-}
 
 footer::before {
 
@@ -1369,3 +1367,4 @@ footer::before {
 </body>
 </html>
 ```
+
