@@ -3,12 +3,10 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>heart attack radio</title>
 
-<!-- animated browser icon -->
 <link rel="icon" type="image/gif" href="heart-attack-gif.gif">
 
 <style>
@@ -61,7 +59,6 @@ body::before {
 }
 
 @keyframes scanmove {
-
   from {
     transform: translateY(0);
   }
@@ -69,7 +66,6 @@ body::before {
   to {
     transform: translateY(4px);
   }
-
 }
 
 /* =========================================================
@@ -186,6 +182,8 @@ header {
 
 }
 
+/* LEFT STARS — RED */
+
 header::before {
 
   content: "★ ★ ★ ★ ★";
@@ -203,6 +201,8 @@ header::before {
 
 }
 
+/* RIGHT STARS — RED */
+
 header::after {
 
   content: "★ ★ ★ ★ ★";
@@ -212,7 +212,7 @@ header::after {
   top: 7px;
   right: 10px;
 
-  color: #18ee1c;
+  color: #d71920;
 
   font-size: 11px;
 
@@ -262,6 +262,7 @@ header::after {
 
 /* =========================================================
    LOCATION
+   KEEP THIS GREEN
    ========================================================= */
 
 .location {
@@ -407,7 +408,7 @@ nav a:hover {
 
   text-shadow:
     5px 5px 0 #d71920,
-    -2px -2px 0 #18ee1c,
+    -2px -2px 0 #ffffff,
     0 0 8px rgba(255,255,255,.25);
 
   animation: titleflicker 2.2s infinite alternate;
@@ -477,7 +478,7 @@ nav a:hover {
   border-bottom: 4px solid #d71920;
 
   box-shadow:
-    0 5px 0 #18ee1c;
+    0 5px 0 #ffffff;
 
 }
 
@@ -518,6 +519,16 @@ nav a:hover {
   height: 100%;
 
   animation: mediaMove 20s linear infinite;
+
+}
+
+/* =========================================================
+   MEDIA ITEM
+   ========================================================= */
+
+.media-item {
+
+  position: relative;
 
 }
 
@@ -572,7 +583,7 @@ nav a:hover {
   bottom: 5px;
   right: 7px;
 
-  color: #18ee1c;
+  color: #ffffff;
 
   font-family: "VT323",monospace;
 
@@ -647,23 +658,25 @@ nav a:hover {
 
   flex-shrink: 0;
 
+  position: relative;
+
   border-radius: 50%;
 
   background:
     conic-gradient(
       #ffffff,
-      #18ee1c,
+      #eeeeee,
       #ffffff,
-      #d71920,
+      #bbbbbb,
       #ffffff,
-      #18ee1c,
+      #dddddd,
       #ffffff
     );
 
   border: 4px solid #ffffff;
 
   box-shadow:
-    5px 5px 0 #18ee1c;
+    5px 5px 0 #ffffff;
 
   animation: spin 4s linear infinite;
 
@@ -719,6 +732,8 @@ nav a:hover {
   height: 75px;
 
   flex-shrink: 0;
+
+  position: relative;
 
   border-radius: 50%;
 
@@ -852,7 +867,7 @@ nav a:hover {
 
   left: 28px;
 
-  color: #18ee1c;
+  color: #ffffff;
 
   font-family: "VT323",monospace;
 
@@ -895,7 +910,7 @@ nav a:hover {
   top: 0;
 
   box-shadow:
-    inset 0 0 0 5px #18ee1c;
+    inset 0 0 0 5px #ffffff;
 
 }
 
@@ -968,7 +983,7 @@ nav a:hover {
   border: 4px solid #ffffff;
 
   box-shadow:
-    5px 5px 0 #18ee1c;
+    5px 5px 0 #ffffff;
 
   transform: rotate(4deg);
 
@@ -1012,7 +1027,7 @@ nav a:hover {
 
   left: 15px;
 
-  color: #18ee1c;
+  color: #ffffff;
 
   font-size: 9px;
 
@@ -1054,6 +1069,7 @@ nav a:hover {
 
   to {
     transform: rotate(360deg);
+
   }
 
 }
@@ -1140,7 +1156,7 @@ nav a:hover {
   font-size: 21px;
 
   box-shadow:
-    5px 5px 0 #18ee1c;
+    5px 5px 0 #ffffff;
 
   transition: .15s;
 
@@ -1192,7 +1208,7 @@ section {
   font-size: 25px;
 
   box-shadow:
-    6px 6px 0 #18ee1c;
+    6px 6px 0 #ffffff;
 
 }
 
@@ -1207,6 +1223,10 @@ section {
   max-width: 850px;
 
 }
+
+/* =========================================================
+   PANAMA / AUSTIN GREEN
+   ========================================================= */
 
 .panama {
 
@@ -1258,7 +1278,7 @@ section {
   top: 8px;
   right: 10px;
 
-  color: #18ee1c;
+  color: #ffffff;
 
   animation: blink 1s infinite;
 
@@ -1344,7 +1364,7 @@ section {
 
   color: #ffffff;
 
-  border-color: #18ee1c;
+  border-color: #ffffff;
 
   transform: translateY(-4px);
 
@@ -1391,7 +1411,7 @@ footer::before {
 
   display: block;
 
-  color: #18ee1c;
+  color: #ffffff;
 
   font-size: 18px;
 
@@ -1586,13 +1606,11 @@ footer::before {
     class="hero-gif"
   >
 
-
   <h1>
 
     heart attack radio
 
   </h1>
-
 
   <p>
 
