@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="websitelaunches-verification" content="eec74f281f9e15b6f6970c912ad7f466">
+
   <title>heart attack radio</title>
   <link rel="icon" type="image/gif" href="heart-attack-gif.gif">
 
@@ -15,8 +17,8 @@
 
     body {
       margin: 0;
-      background: #000000;
-      color: #ffffff;
+      background: #000;
+      color: #fff;
       font-family: "Courier New", monospace;
       overflow-x: hidden;
       text-transform: lowercase;
@@ -39,12 +41,6 @@
       animation: scanmove .15s linear infinite;
     }
 
-    @keyframes scanmove {
-      from { transform: translateY(0); }
-      to { transform: translateY(4px); }
-    }
-
-    /* Screen flicker */
     body::after {
       content: "";
       position: fixed;
@@ -55,35 +51,45 @@
       animation: flicker .12s infinite;
     }
 
+    @keyframes scanmove {
+      from { transform: translateY(0); }
+      to { transform: translateY(4px); }
+    }
+
     @keyframes flicker {
       0%, 100% { opacity: 1; }
       50% { opacity: .75; }
+    }
+
+    @keyframes blink {
+      0%, 45% { opacity: 1; }
+      50%, 100% { opacity: .35; }
     }
 
     /* Main frame */
     .page {
       width: min(1120px, 94%);
       margin: 18px auto;
-      background: #000000;
+      background: #000;
       border: 4px solid #d71920;
       box-shadow:
-        0 0 0 3px #000000,
-        0 0 0 6px #ffffff,
-        0 0 0 9px #000000,
+        0 0 0 3px #000,
+        0 0 0 6px #fff,
+        0 0 0 9px #000,
         0 0 30px rgba(215,25,32,.25);
     }
 
     /* Top ticker */
     .topbar {
       background: #d71920;
-      color: #ffffff;
+      color: #fff;
       height: 31px;
       display: flex;
       align-items: center;
       overflow: hidden;
       font-family: "VT323", monospace;
       font-size: 18px;
-      border-bottom: 3px solid #ffffff;
+      border-bottom: 3px solid #fff;
     }
 
     .ticker {
@@ -100,30 +106,23 @@
     header {
       padding: 30px 20px 25px;
       text-align: center;
-      background: #000000;
-      border-bottom: 4px dashed #ffffff;
+      background: #000;
+      border-bottom: 4px dashed #fff;
       position: relative;
     }
 
-    header::before {
-      content: "★ ★ ★ ★ ★";
-      position: absolute;
-      top: 7px;
-      left: 10px;
-      color: #d71920;
-      font-size: 11px;
-      animation: blink 1s infinite;
-    }
-
+    header::before,
     header::after {
       content: "★ ★ ★ ★ ★";
       position: absolute;
       top: 7px;
-      right: 10px;
       color: #d71920;
       font-size: 11px;
-      animation: blink 1.4s infinite;
+      animation: blink 1.2s infinite;
     }
+
+    header::before { left: 10px; }
+    header::after { right: 10px; }
 
     .logo {
       width: min(480px, 90%);
@@ -133,12 +132,11 @@
       margin: 0 auto 18px;
       filter:
         drop-shadow(5px 5px 0 #d71920)
-        drop-shadow(-2px -2px 0 #ffffff);
+        drop-shadow(-2px -2px 0 #fff);
     }
 
     .tagline {
-      color: #ffffff;
-      font-family: "Courier New", monospace;
+      color: #fff;
       font-size: clamp(12px, 2.5vw, 18px);
       letter-spacing: 2px;
       font-weight: bold;
@@ -170,7 +168,7 @@
 
     nav a {
       padding: 12px 20px;
-      color: #ffffff;
+      color: #fff;
       border-right: 1px solid #444;
       font-family: "VT323", monospace;
       font-size: 20px;
@@ -180,16 +178,16 @@
 
     nav a:hover {
       background: #d71920;
-      color: #ffffff;
-      text-shadow: 2px 2px 0 #000000;
+      color: #fff;
+      text-shadow: 2px 2px 0 #000;
     }
 
     /* Hero */
     .hero {
       padding: 35px 20px;
       text-align: center;
-      border-bottom: 4px dashed #ffffff;
-      background: #000000;
+      border-bottom: 4px dashed #fff;
+      background: #000;
     }
 
     .hero-gif {
@@ -198,8 +196,8 @@
       object-fit: contain;
       display: block;
       margin: 0 auto 30px;
-      border: 4px solid #ffffff;
-      background: #000000;
+      border: 4px solid #fff;
+      background: #000;
       box-shadow:
         8px 8px 0 #d71920,
         0 0 20px rgba(255,255,255,.08);
@@ -207,40 +205,32 @@
 
     .hero h1 {
       margin: 10px 0 12px;
-      color: #ffffff;
-      font-family:
-        "Oliver Printype",
-        "Ironwood",
-        "Special Elite",
-        "VT323",
-        monospace;
+      color: #fff;
+      font-family: "Special Elite", "VT323", monospace;
       font-size: clamp(38px, 8vw, 82px);
       letter-spacing: 2px;
       line-height: .9;
-      text-transform: lowercase;
       text-shadow:
         5px 5px 0 #d71920,
-        -2px -2px 0 #ffffff,
+        -2px -2px 0 #fff,
         0 0 8px rgba(255,255,255,.25);
       animation: titleflicker 2.2s infinite alternate;
     }
 
     @keyframes titleflicker {
-      0% { opacity: 1; }
-      94% { opacity: 1; }
+      0%, 94%, 100% { opacity: 1; }
       96% { opacity: .65; }
-      100% { opacity: 1; }
     }
 
-    .hero p {
+    .hero > p {
       max-width: 760px;
       margin: 15px auto;
       line-height: 1.7;
-      color: #ffffff;
+      color: #fff;
       font-size: 14px;
     }
 
-    /* 90s multimedia banner */
+    /* Animated music graphics */
     .media-ticker {
       width: 100%;
       max-width: 920px;
@@ -249,22 +239,9 @@
       overflow: hidden;
       position: relative;
       background: #050505;
-      border-top: 4px solid #ffffff;
+      border-top: 4px solid #fff;
       border-bottom: 4px solid #d71920;
-      box-shadow: 0 5px 0 #ffffff;
-    }
-
-    .media-ticker::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: repeating-linear-gradient(
-        90deg,
-        transparent 0px,
-        transparent 19px,
-        rgba(255,255,255,.035) 20px
-      );
+      box-shadow: 0 5px 0 #fff;
     }
 
     .media-track {
@@ -276,16 +253,18 @@
       animation: mediaMove 20s linear infinite;
     }
 
-    .media-item { position: relative; }
+    @keyframes mediaMove {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
 
-    /* Cassette */
     .cassette {
       width: 110px;
       height: 65px;
       flex-shrink: 0;
       position: relative;
       background: #bdbdbd;
-      border: 4px solid #ffffff;
+      border: 4px solid #fff;
       box-shadow: 5px 5px 0 #d71920;
       transform: rotate(-3deg);
     }
@@ -305,7 +284,7 @@
       position: absolute;
       bottom: 5px;
       right: 7px;
-      color: #ffffff;
+      color: #fff;
       font-family: "VT323", monospace;
       font-size: 13px;
     }
@@ -316,9 +295,9 @@
       right: 20px;
       top: 13px;
       height: 22px;
-      background: #ffffff;
-      color: #000000;
-      border: 2px solid #000000;
+      background: #fff;
+      color: #000;
+      border: 2px solid #000;
       font-family: "VT323", monospace;
       font-size: 13px;
       line-height: 18px;
@@ -330,8 +309,8 @@
       bottom: 5px;
       width: 15px;
       height: 15px;
-      border: 3px dotted #000000;
-      background: #ffffff;
+      border: 3px dotted #000;
+      background: #fff;
       border-radius: 50%;
       animation: reelSpin 1.3s linear infinite;
     }
@@ -339,7 +318,6 @@
     .reel-left { left: 17px; }
     .reel-right { right: 17px; }
 
-    /* CD */
     .cd {
       width: 67px;
       height: 67px;
@@ -347,16 +325,10 @@
       position: relative;
       border-radius: 50%;
       background: conic-gradient(
-        #ffffff,
-        #eeeeee,
-        #ffffff,
-        #bbbbbb,
-        #ffffff,
-        #dddddd,
-        #ffffff
+        #fff, #eee, #fff, #bbb, #fff, #ddd, #fff
       );
-      border: 4px solid #ffffff;
-      box-shadow: 5px 5px 0 #ffffff;
+      border: 4px solid #fff;
+      box-shadow: 5px 5px 0 #fff;
       animation: spin 4s linear infinite;
     }
 
@@ -365,7 +337,7 @@
       position: absolute;
       font-family: "VT323", monospace;
       font-size: 10px;
-      color: #000000;
+      color: #000;
       left: 8px;
       top: 7px;
     }
@@ -374,15 +346,14 @@
       position: absolute;
       width: 14px;
       height: 14px;
-      background: #000000;
-      border: 3px solid #ffffff;
+      background: #000;
+      border: 3px solid #fff;
       border-radius: 50%;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
     }
 
-    /* Vinyl */
     .vinyl {
       width: 75px;
       height: 75px;
@@ -390,13 +361,9 @@
       position: relative;
       border-radius: 50%;
       background: repeating-radial-gradient(
-        circle,
-        #050505 0px,
-        #050505 3px,
-        #222222 4px,
-        #050505 6px
+        circle, #050505 0 3px, #222 4px, #050505 6px
       );
-      border: 4px solid #ffffff;
+      border: 4px solid #fff;
       box-shadow: 5px 5px 0 #d71920;
       animation: spin 7s linear infinite reverse;
     }
@@ -407,7 +374,7 @@
       height: 27px;
       border-radius: 50%;
       background: #d71920;
-      border: 3px solid #ffffff;
+      border: 3px solid #fff;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
@@ -418,13 +385,12 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #ffffff;
+      background: #fff;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
     }
 
-    /* Headphones */
     .headphones {
       width: 100px;
       height: 76px;
@@ -436,7 +402,7 @@
       position: absolute;
       width: 76px;
       height: 60px;
-      border: 8px solid #ffffff;
+      border: 8px solid #fff;
       border-bottom: none;
       border-radius: 55px 55px 0 0;
       left: 12px;
@@ -448,7 +414,7 @@
       width: 28px;
       height: 38px;
       background: #d71920;
-      border: 4px solid #ffffff;
+      border: 4px solid #fff;
       border-radius: 5px;
       bottom: 0;
     }
@@ -461,12 +427,11 @@
       position: absolute;
       top: 30px;
       left: 28px;
-      color: #ffffff;
+      color: #fff;
       font-family: "VT323", monospace;
       font-size: 10px;
     }
 
-    /* Microphone */
     .mic {
       width: 70px;
       height: 80px;
@@ -479,11 +444,11 @@
       width: 38px;
       height: 47px;
       background: #bdbdbd;
-      border: 4px solid #ffffff;
+      border: 4px solid #fff;
       border-radius: 20px;
       left: 16px;
       top: 0;
-      box-shadow: inset 0 0 0 5px #ffffff;
+      box-shadow: inset 0 0 0 5px #fff;
     }
 
     .mic-head::after {
@@ -491,7 +456,7 @@
       position: absolute;
       left: 7px;
       top: 13px;
-      color: #000000;
+      color: #000;
       font-size: 13px;
       letter-spacing: 2px;
     }
@@ -500,7 +465,7 @@
       position: absolute;
       width: 8px;
       height: 22px;
-      background: #ffffff;
+      background: #fff;
       left: 31px;
       top: 43px;
     }
@@ -514,15 +479,14 @@
       bottom: 4px;
     }
 
-    /* Phone */
     .phone {
       width: 48px;
       height: 76px;
       flex-shrink: 0;
       position: relative;
-      background: #222222;
-      border: 4px solid #ffffff;
-      box-shadow: 5px 5px 0 #ffffff;
+      background: #222;
+      border: 4px solid #fff;
+      box-shadow: 5px 5px 0 #fff;
       transform: rotate(4deg);
     }
 
@@ -533,7 +497,7 @@
       top: 9px;
       bottom: 10px;
       background: #d71920;
-      color: #ffffff;
+      color: #fff;
       font-family: "VT323", monospace;
       font-size: 9px;
       text-align: center;
@@ -547,23 +511,17 @@
       position: absolute;
       bottom: -8px;
       left: 15px;
-      color: #ffffff;
+      color: #fff;
       font-size: 9px;
     }
 
-    /* Animations */
-    @keyframes mediaMove {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
     @keyframes reelSpin {
-      from { transform: rotate(0deg); }
+      from { transform: rotate(0); }
       to { transform: rotate(360deg); }
     }
 
     @keyframes spin {
-      from { transform: rotate(0deg); }
+      from { transform: rotate(0); }
       to { transform: rotate(360deg); }
     }
 
@@ -576,8 +534,8 @@
     .player {
       margin: 30px auto;
       max-width: 720px;
-      border: 4px solid #ffffff;
-      background: #000000;
+      border: 4px solid #fff;
+      background: #000;
       padding: 20px;
       box-shadow: 8px 8px 0 #d71920;
     }
@@ -593,8 +551,8 @@
     .player iframe {
       width: 100%;
       min-height: 110px;
-      border: 3px solid #ffffff;
-      background: #000000;
+      border: 3px solid #fff;
+      background: #000;
     }
 
     /* Buttons */
@@ -602,19 +560,19 @@
       display: inline-block;
       padding: 12px 20px;
       margin: 10px 5px 0 0;
-      border: 3px solid #ffffff;
+      border: 3px solid #fff;
       background: #d71920;
-      color: #ffffff;
+      color: #fff;
       font-family: "VT323", monospace;
       font-size: 21px;
-      box-shadow: 5px 5px 0 #ffffff;
+      box-shadow: 5px 5px 0 #fff;
       transition: .15s;
       text-decoration: none;
     }
 
     .button:hover {
-      background: #ffffff;
-      color: #000000;
+      background: #fff;
+      color: #000;
       box-shadow: 5px 5px 0 #d71920;
       transform: translate(3px, 3px);
     }
@@ -622,29 +580,28 @@
     /* Shared section layout */
     section {
       padding: 38px 25px;
-      border-bottom: 4px dashed #ffffff;
-      background: #000000;
+      border-bottom: 4px dashed #fff;
+      background: #000;
     }
 
     .section-title {
       display: inline-block;
       background: #d71920;
-      color: #ffffff;
+      color: #fff;
       padding: 8px 13px;
       margin-bottom: 20px;
       font-family: "VT323", monospace;
       font-size: 25px;
-      box-shadow: 6px 6px 0 #ffffff;
+      box-shadow: 6px 6px 0 #fff;
     }
 
     .section-text {
       line-height: 1.8;
-      color: #dddddd;
+      color: #ddd;
       font-size: 14px;
       max-width: 850px;
     }
 
-    /* Panama green */
     .panama {
       color: #18ee1c;
       font-weight: bold;
@@ -660,9 +617,9 @@
     }
 
     .card {
-      border: 3px solid #ffffff;
+      border: 3px solid #fff;
       padding: 20px;
-      background: #000000;
+      background: #000;
       position: relative;
       transition: .15s;
     }
@@ -672,7 +629,7 @@
       position: absolute;
       top: 8px;
       right: 10px;
-      color: #ffffff;
+      color: #fff;
       animation: blink 1s infinite;
     }
 
@@ -684,7 +641,7 @@
 
     .card h3 {
       margin-top: 0;
-      color: #ffffff;
+      color: #fff;
       font-family: "VT323", monospace;
       font-size: 28px;
       text-shadow: 2px 2px 0 #d71920;
@@ -705,29 +662,162 @@
     }
 
     .social {
-      border: 3px solid #ffffff;
+      border: 3px solid #fff;
       padding: 16px 8px;
       text-align: center;
       font-family: "VT323", monospace;
       font-size: 21px;
-      background: #000000;
-      color: #ffffff;
+      background: #000;
+      color: #fff;
       transition: .15s;
       text-decoration: none;
     }
 
     .social:hover {
       background: #d71920;
-      color: #ffffff;
-      border-color: #ffffff;
+      color: #fff;
+      border-color: #fff;
       transform: translateY(-4px);
+    }
+
+    /* Minimal merch portal */
+    .merch-portal {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: min(460px, 100%);
+      min-height: 205px;
+      margin: 26px 0 12px;
+      padding: 30px 20px 27px;
+      overflow: hidden;
+      color: #fff;
+      text-decoration: none;
+      text-align: center;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255,255,255,.018) 0,
+          rgba(255,255,255,.018) 1px,
+          transparent 1px,
+          transparent 4px
+        ),
+        #080808;
+      border: 3px ridge #777;
+      outline: 1px solid #222;
+      box-shadow: 5px 5px 0 #d71920;
+      transition:
+        border-color .18s ease,
+        box-shadow .18s ease,
+        transform .18s ease;
+    }
+
+    /* Subtle corner details */
+    .merch-portal::before,
+    .merch-portal::after {
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      content: "";
+      pointer-events: none;
+    }
+
+    .merch-portal::before {
+      top: 8px;
+      left: 8px;
+      border-top: 2px solid #18ee1c;
+      border-left: 2px solid #18ee1c;
+    }
+
+    .merch-portal::after {
+      right: 8px;
+      bottom: 8px;
+      border-right: 2px solid #18ee1c;
+      border-bottom: 2px solid #18ee1c;
+    }
+
+    .merch-portal:hover,
+    .merch-portal:focus-visible {
+      border-color: #18ee1c;
+      box-shadow:
+        5px 5px 0 #d71920,
+        0 0 10px rgba(24,238,28,.3);
+      transform: translate(-2px, -2px);
+    }
+
+    .merch-portal:focus-visible {
+      outline: 2px dotted #fff;
+      outline-offset: 5px;
+    }
+
+    .merch-portal-title {
+      margin: 0 0 18px;
+      color: #18ee1c;
+      font-family: "VT323", monospace;
+      font-size: clamp(52px, 8vw, 70px);
+      font-weight: normal;
+      line-height: .9;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow: 0 0 7px rgba(24,238,28,.35);
+      transition: text-shadow .18s ease;
+    }
+
+    .merch-portal:hover .merch-portal-title {
+      text-shadow: 0 0 12px rgba(24,238,28,.75);
+    }
+
+    .merch-portal-enter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-width: 145px;
+      padding: 9px 18px;
+      border: 1px solid #18ee1c;
+      background: #080d08;
+      color: #18ee1c;
+      font-family: "VT323", monospace;
+      font-size: 22px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition:
+        color .18s ease,
+        background .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .merch-portal-enter::after {
+      content: ">";
+      font-size: 25px;
+      line-height: 16px;
+    }
+
+    .merch-portal:hover .merch-portal-enter,
+    .merch-portal:focus-visible .merch-portal-enter {
+      color: #000;
+      background: #18ee1c;
+      box-shadow: 0 0 10px rgba(24,238,28,.3);
+    }
+
+    .merch-portal-bottom {
+      position: absolute;
+      right: 14px;
+      bottom: 10px;
+      color: #777;
+      font-family: "VT323", monospace;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      pointer-events: none;
     }
 
     /* Footer */
     footer {
       padding: 30px 20px;
       text-align: center;
-      background: #000000;
+      background: #000;
       color: #18ee1c;
       font-size: 11px;
       line-height: 1.8;
@@ -735,7 +825,7 @@
     }
 
     footer strong {
-      color: #ffffff;
+      color: #fff;
       font-family: "VT323", monospace;
       font-size: 25px;
       text-shadow: 2px 2px 0 #d71920;
@@ -743,7 +833,7 @@
 
     .footer-green {
       color: #18ee1c;
-      text-shadow: 0 0 5px rgba(24,238,28,.45);
+      text-shadow: 0 0 5px rgba(24,238,28,.25);
     }
 
     footer::before {
@@ -753,175 +843,6 @@
       font-size: 18px;
       margin-bottom: 5px;
       animation: blink 1.5s infinite;
-    }
-
-    @keyframes blink {
-      0%, 45% { opacity: 1; }
-      50%, 100% { opacity: .35; }
-    }
-
-    /* Old-school merch entrance */
-    .merch-portal {
-      position: relative;
-      display: block;
-      width: min(560px, 94%);
-      min-height: 0;
-      margin: 28px auto 22px;
-      padding: 5px;
-      overflow: hidden;
-      color: #f5f5ed;
-      text-decoration: none;
-      text-align: center;
-      border: 3px ridge #777;
-      outline: 1px solid #222;
-      background: #101010;
-      box-shadow: 0 0 0 3px #050505, 0 0 12px rgba(0,0,0,.8);
-      transition: border-color .15s linear, box-shadow .15s linear;
-    }
-
-    .merch-portal::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,.025) 0 1px,
-          transparent 1px 4px
-        ),
-        #090b09;
-    }
-
-    .merch-portal > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .merch-portal:hover,
-    .merch-portal:focus-visible {
-      border-color: #18ee1c;
-      box-shadow:
-        0 0 0 3px #050505,
-        0 0 8px #18ee1c,
-        0 0 18px rgba(24,238,28,.35);
-    }
-
-    .merch-portal:focus-visible {
-      outline: 2px dotted #fff;
-      outline-offset: 5px;
-    }
-
-    .merch-portal-top,
-    .merch-portal-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      padding: 6px 8px;
-      color: #18ee1c;
-      font-family: "VT323", monospace;
-      font-size: clamp(12px, 2vw, 16px);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      background: #050505;
-    }
-
-    .merch-portal-top {
-      border-bottom: 1px dashed #3b6d3c;
-    }
-
-    .merch-portal-bottom {
-      border-top: 1px dashed #3b6d3c;
-      color: #aaa;
-    }
-
-    .merch-portal-inner {
-      padding: 14px 8px 15px;
-    }
-
-    .merch-portal-kicker {
-      margin-bottom: 5px;
-      color: #ddd;
-      font-family: "VT323", monospace;
-      font-size: clamp(14px, 2.4vw, 19px);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .merch-portal-title {
-      margin: 0;
-      color: #18ee1c;
-      font-family: "VT323", monospace;
-      font-size: clamp(48px, 8vw, 76px);
-      font-weight: normal;
-      line-height: .9;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      text-shadow: 1px 1px 0 #073b0a, 0 0 5px rgba(24,238,28,.65);
-    }
-
-    .merch-portal-description {
-      max-width: 440px;
-      margin: 9px auto 12px;
-      color: #d5d5cd;
-      font-family: "VT323", monospace;
-      font-size: clamp(15px, 2.4vw, 20px);
-      line-height: 1.2;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-    }
-
-    .merch-portal-enter {
-      display: inline-block;
-      padding: 5px 14px;
-      border: 2px outset #18ee1c;
-      background: #071307;
-      color: #18ee1c;
-      font-family: "VT323", monospace;
-      font-size: clamp(17px, 2.8vw, 23px);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      box-shadow: inset 1px 1px 0 rgba(255,255,255,.12);
-      transition: color .12s linear, background .12s linear;
-    }
-
-    .merch-portal:hover .merch-portal-enter,
-    .merch-portal:focus-visible .merch-portal-enter {
-      border-style: inset;
-      color: #000;
-      background: #18ee1c;
-      box-shadow: 0 0 10px rgba(24,238,28,.5);
-    }
-
-    @media (max-width: 500px) {
-      .merch-portal {
-        width: 96%;
-        padding: 4px;
-      }
-
-      .merch-portal-top,
-      .merch-portal-bottom {
-        padding: 5px 4px;
-        font-size: 11px;
-        gap: 4px;
-      }
-
-      .merch-portal-inner {
-        padding: 13px 3px;
-      }
-
-      .merch-portal-description {
-        margin: 8px auto 10px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .merch-portal,
-      .merch-portal-enter {
-        transition: none;
-      }
     }
 
     /* Mobile */
@@ -961,10 +882,6 @@
         font-size: clamp(40px, 12vw, 65px);
       }
 
-      .topbar {
-        justify-content: center;
-      }
-
       .media-ticker {
         height: 85px;
       }
@@ -972,6 +889,29 @@
       .media-track {
         gap: 40px;
         animation-duration: 14s;
+      }
+
+      .merch-portal {
+        min-height: 190px;
+        margin-top: 23px;
+        padding: 25px 12px;
+      }
+
+      .merch-portal-bottom {
+        right: 10px;
+        bottom: 8px;
+        font-size: 11px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
       }
     }
   </style>
@@ -999,9 +939,7 @@
         no algorithm. no corporate radio. no rules.
       </div>
 
-      <div class="location">
-        austin, texas
-      </div>
+      <div class="location">austin, texas</div>
     </header>
 
     <nav>
@@ -1029,72 +967,67 @@
       <div class="media-ticker">
         <div class="media-track">
 
-          <div class="media-item cassette">
+          <div class="cassette">
             <div class="cassette-label">heart attack</div>
             <div class="cassette-reel reel-left"></div>
             <div class="cassette-reel reel-right"></div>
           </div>
 
-          <div class="media-item cd">
+          <div class="cd">
             <div class="cd-hole"></div>
           </div>
 
-          <div class="media-item vinyl">
+          <div class="vinyl">
             <div class="vinyl-label"></div>
             <div class="vinyl-hole"></div>
           </div>
 
-          <div class="media-item headphones">
+          <div class="headphones">
             <div class="headband"></div>
             <div class="ear left"></div>
             <div class="ear right"></div>
           </div>
 
-          <div class="media-item mic">
+          <div class="mic">
             <div class="mic-head"></div>
             <div class="mic-body"></div>
             <div class="mic-stand"></div>
           </div>
 
-          <div class="media-item phone">
-            <div class="phone-screen">
-              heart attack<br>
-              radio
-            </div>
+          <div class="phone">
+            <div class="phone-screen">heart attack<br>radio</div>
           </div>
 
-          <div class="media-item cassette">
+          <!-- Repeat graphics for a continuous loop -->
+          <div class="cassette">
             <div class="cassette-label">heart attack</div>
             <div class="cassette-reel reel-left"></div>
             <div class="cassette-reel reel-right"></div>
           </div>
 
-          <div class="media-item cd">
+          <div class="cd">
             <div class="cd-hole"></div>
           </div>
 
-          <div class="media-item vinyl">
+          <div class="vinyl">
             <div class="vinyl-label"></div>
             <div class="vinyl-hole"></div>
           </div>
 
-          <div class="media-item headphones">
+          <div class="headphones">
             <div class="headband"></div>
             <div class="ear left"></div>
             <div class="ear right"></div>
           </div>
 
-          <div class="media-item mic">
+          <div class="mic">
             <div class="mic-head"></div>
             <div class="mic-body"></div>
             <div class="mic-stand"></div>
           </div>
 
-          <div class="media-item phone">
-            <div class="phone-screen">
-              heart attack<br>
-              radio
-            </div>
+          <div class="phone">
+            <div class="phone-screen">heart attack<br>radio</div>
           </div>
 
         </div>
@@ -1106,7 +1039,7 @@
         <iframe
           src="https://thehearttackradio.radio12345.com/"
           title="heart attack radio live player"
-          frameborder="0">
+          loading="lazy">
         </iframe>
 
         <a
@@ -1126,7 +1059,7 @@
         heart attack radio is an independent underground radio
         bringing sounds from austin to your ears...we are the
         club in your radio, phone or any device &amp; we are the home
-        of the ¨110¨.
+        of the "110".
         <br><br>
         110. dancehall. reggae. salsa. cumbia. hip-hop. house.
         disco. kompa. rock. latin sounds. underground sounds.
@@ -1173,7 +1106,7 @@
       </div>
     </section>
 
-    <!-- MERCH SECTION: matches the other section layout -->
+    <!-- Minimal merch section -->
     <section id="merch">
       <div class="section-title">// merch</div>
 
@@ -1188,33 +1121,17 @@
         href="https://heartattackradio.bigcartel.com/"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Enter the Heart Attack Radio merch store">
+        aria-label="Enter the Heart Attack Radio merch shop">
 
-        <div class="merch-portal-top">
-          <span>h.a.r. system 98</span>
-          <span>connection: active</span>
-        </div>
+        <span class="merch-portal-title">merch</span>
 
-        <div class="merch-portal-inner">
-          <div class="merch-portal-kicker">
-            the official heart attack radio shop
-          </div>
+        <span class="merch-portal-enter">
+          enter shop
+        </span>
 
-          <div class="merch-portal-title">merch</div>
-
-          <p class="merch-portal-description">
-            records, releases &amp; independent music culture.
-          </p>
-
-          <span class="merch-portal-enter">
-            [ enter the shop &gt; ]
-          </span>
-        </div>
-
-        <div class="merch-portal-bottom">
-          <span>loading frequency 98.0</span>
-          <span>access granted</span>
-        </div>
+        <span class="merch-portal-bottom">
+          access granted
+        </span>
       </a>
     </section>
 
@@ -1273,12 +1190,6 @@
       <br>
 
       <span class="footer-green">
-        the radio station with the #1 listeners in austin...
-      </span>
-
-      <br><br>
-
-      <span class="footer-green">
         this website is best experienced with headphones
         or windows 98 perhaps.
       </span>
@@ -1287,4 +1198,3 @@
   </div>
 </body>
 </html>
-
