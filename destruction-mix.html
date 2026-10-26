@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>the destruction mix vol. 1 // heart attack radio</title>
+<link rel="icon" type="image/gif" href="heart-attack-gif.gif">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Special+Elite&display=swap');
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:#000;color:#fff;
+  font-family:"Courier New",monospace;
+  text-transform:lowercase;overflow-x:hidden
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;
+  background:repeating-linear-gradient(0deg,#ffffff06 0 1px,transparent 1px 4px)
+}
+@keyframes flicker{50%{opacity:.65}}
+@keyframes blink{50%{opacity:.2}}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 8px #18ee1c,inset 0 0 8px #18ee1c22}
+  50%{box-shadow:0 0 22px #18ee1c,inset 0 0 16px #18ee1c44}
+}
+.page{
+  width:min(1050px,94%);margin:18px auto;background:#000;
+  border:4px solid #d71920;
+  box-shadow:0 0 0 3px #000,0 0 0 6px white,0 0 0 9px #000,
+  0 0 30px #d7192040
+}
+.topbar{
+  height:31px;display:flex;align-items:center;overflow:hidden;
+  background:#d71920;border-bottom:3px solid white;
+  font:18px "VT323",monospace
+}
+.ticker{white-space:nowrap;animation:scroll 18s linear infinite}
+@keyframes scroll{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+header{
+  text-align:center;padding:28px 20px;border-bottom:4px dashed white;
+  position:relative
+}
+.logo{
+  width:min(360px,85%);max-height:190px;object-fit:contain;
+  filter:drop-shadow(4px 4px 0 #d71920);margin-bottom:15px
+}
+.location{
+  color:#18ee1c;font:20px "VT323",monospace;
+  letter-spacing:2px;text-shadow:0 0 6px #18ee1c
+}
+nav{
+  display:flex;justify-content:center;flex-wrap:wrap;
+  border-bottom:4px solid #d71920;background:#050505
+}
+nav a{
+  padding:12px 18px;color:white;text-decoration:none;
+  border-right:1px solid #444;font:20px "VT323",monospace
+}
+nav a:hover{background:#d71920}
+main{padding:clamp(22px,5vw,55px);text-align:center}
+.kicker{font:22px "VT323",monospace;color:#18ee1c;letter-spacing:3px}
+h1{
+  margin:20px 0;color:white;
+  font:clamp(42px,8vw,82px)/.95 "Special Elite","VT323",monospace;
+  text-shadow:5px 5px #d71920,-2px -2px white
+}
+h2{font:30px "VT323",monospace;color:#d71920}
+.intro{
+  max-width:720px;margin:20px auto;line-height:1.9;
+  font-size:15px
+}
+.rule{border:0;border-top:3px dashed white;margin:35px 0}
+.art-panel{
+  max-width:760px;margin:30px auto;padding:22px;
+  border:3px solid white;box-shadow:7px 7px #d71920;background:#080808
+}
+.art-panel .warning{
+  color:#d71920;font:25px "VT323",monospace;letter-spacing:2px
+}
+.disc{
+  width:min(280px,75vw);aspect-ratio:1;margin:24px auto;
+  border-radius:50%;border:3px solid #888;
+  background:repeating-radial-gradient(circle,#111 0 3px,#333 4px 5px);
+  display:grid;place-items:center;box-shadow:0 0 20px #ffffff20
+}
+.disc-label{
+  width:40%;aspect-ratio:1;border-radius:50%;background:#d71920;
+  border:3px solid white;display:grid;place-items:center;
+  font:22px "VT323",monospace;color:white
+}
+.video{
+  position:relative;width:100%;padding-bottom:56.25%;height:0;
+  margin:22px auto;background:#111;border:3px solid #d71920
+}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.button{
+  display:inline-flex;align-items:center;justify-content:center;
+  margin:8px;padding:14px 22px;border:2px solid #d71920;
+  background:#080808;color:white;text-decoration:none;cursor:pointer;
+  font:22px "VT323",monospace;transition:.2s
+}
+.button:hover{background:#d71920;transform:translateY(-2px)}
+.merch-gate{
+  position:relative;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;width:min(450px,100%);min-height:125px;
+  margin:30px auto;padding:24px 20px;overflow:hidden;color:#18ee1c;
+  background:repeating-linear-gradient(0deg,#000 0 3px,#081008 3px 5px);
+  border:3px solid #18ee1c;outline:2px solid white;outline-offset:5px;
+  box-shadow:0 0 12px #18ee1c,0 0 30px #18ee1c55,inset 0 0 20px #18ee1c22;
+  font:34px "VT323",monospace;text-align:center;text-decoration:none;
+  animation:pulse 2.5s infinite
+}
+.merch-gate:before{
+  content:"";position:absolute;inset:7px;border:1px dashed #18ee1c66;
+  pointer-events:none
+}
+.merch-gate:hover{background:#18ee1c;color:#000;transform:scale(1.025)}
+.merch-subtitle{font:14px "Courier New",monospace;margin-top:8px}
+footer{
+  padding:25px;text-align:center;font-size:12px;line-height:1.8;
+  border-top:4px dashed white
+}
+.green{color:#18ee1c}
+@media(max-width:600px){
+  .page{width:94%;margin:12px auto}
+  nav a{padding:10px 12px;font-size:18px}
+  main{padding:24px 16px}
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+<div class="topbar">
+  <div class="ticker">
+    ★ heart attack radio ★ the destruction mix vol. 1 ★ d.j. lecture ★
+    physical media lives ★ no algorithm ★
+  </div>
+</div>
+
+<header>
+  <a href="index.html">
+    <img src="heart-attack-logo.png" class="logo" alt="heart attack radio logo">
+  </a>
+  <div class="location">austin, texas // worldwide</div>
+</header>
+
+<nav>
+  <a href="index.html">home</a>
+  <a href="index.html#listen">listen live</a>
+  <a href="#story">the story</a>
+  <a href="#watch">watch</a>
+  <a href="#buy">get the cd</a>
+</nav>
+
+<main>
+  <div class="kicker">heart attack radio presents</div>
+
+  <h1>the destruction<br>mix vol. 1</h1>
+
+  <div class="kicker">a physical mix cd // d.j. lecture</div>
+
+  <div class="disc" aria-label="decorative vinyl record">
+    <div class="disc-label">destruction<br>mix<br>vol. 1</div>
+  </div>
+
+  <p class="intro">
+    some mixes are background music.<br>
+    <strong>this one is a transmission.</strong>
+  </p>
+
+  <hr class="rule">
+
+  <section id="story">
+    <h2>// the story</h2>
+
+    <p class="intro">
+      the destruction mix vol. 1 is a physical mix-cd release from d.j. lecture.
+      built for loud music, unexpected selections, and the feeling of discovering
+      a mix that somebody made because they needed you to hear it.
+    </p>
+
+    <p class="intro">
+      this is not an algorithm choosing what comes next. this is a real mix,
+      put together with intention, pressed onto a physical cd, and sent out
+      into the world.
+    </p>
+
+    <p class="intro">
+      keep it in the car. play it at the function. lend it to somebody who
+      needs to hear something different. make a copy for a friend and keep
+      physical music moving.
+    </p>
+
+    <p class="intro green">
+      no algorithm. no corporate radio. no rules.
+    </p>
+  </section>
+
+  <hr class="rule">
+
+  <section id="watch">
+    <h2>// enter the transmission</h2>
+
+    <p class="intro">
+      watch the video. hear the energy. then take the physical mix home.
+    </p>
+
+    <div class="art-panel">
+      <div class="warning">now transmitting // the destruction mix</div>
+
+      <div class="video">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/uoODeJ07PSw"
+          title="the destruction mix vol. 1 by d.j. lecture"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <a class="button"
+         href="https://youtu.be/uoODeJ07PSw?si=TNRgY_AdWJtE0e5a"
+         target="_blank" rel="noopener noreferrer">
+        watch on youtube
+      </a>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="buy">
+    <h2>// support physical music</h2>
+
+    <p class="intro">
+      this is a physical cd release. if you believe mixes should live outside
+      of a screen, support the release and add one to your collection.
+    </p>
+
+    <a class="merch-gate"
+       href="https://heartattackradio.bigcartel.com/"
+       target="_blank" rel="noopener noreferrer">
+      get the destruction mix
+      <span class="merch-subtitle">physical cd // heart attack radio shop</span>
+    </a>
+
+    <p class="intro">
+      the shop opens in a new tab. find the destruction mix vol. 1 in the
+      heart attack radio big cartel store.
+    </p>
+
+    <a class="button" href="index.html">return to heart attack radio</a>
+  </section>
+</main>
+
+<footer>
+  <strong>heart attack radio</strong><br>
+  <span class="green">austin, texas // worldwide</span><br><br>
+  © 2026 heart attack radio<br>
+  no algorithm. no corporate radio. no rules.
+</footer>
+
+</div>
+</body>
+</html>
