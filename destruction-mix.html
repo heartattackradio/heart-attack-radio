@@ -1,270 +1,594 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>the destruction mix vol. 1 // heart attack radio</title>
-<link rel="icon" type="image/gif" href="heart-attack-gif.gif">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=VT323&family=Special+Elite&display=swap');
+  <title>The Destruction Mix Vol. 1 — Heart Attack Radio</title>
+  <meta name="description" content="The Destruction Mix Vol. 1 by D.J. Lecture. A physical CD release from Heart Attack Radio.">
+  <meta name="theme-color" content="#080808">
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;background:#000;color:#fff;
-  font-family:"Courier New",monospace;
-  text-transform:lowercase;overflow-x:hidden
-}
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;
-  background:repeating-linear-gradient(0deg,#ffffff06 0 1px,transparent 1px 4px)
-}
-@keyframes flicker{50%{opacity:.65}}
-@keyframes blink{50%{opacity:.2}}
-@keyframes pulse{
-  0%,100%{box-shadow:0 0 8px #18ee1c,inset 0 0 8px #18ee1c22}
-  50%{box-shadow:0 0 22px #18ee1c,inset 0 0 16px #18ee1c44}
-}
-.page{
-  width:min(1050px,94%);margin:18px auto;background:#000;
-  border:4px solid #d71920;
-  box-shadow:0 0 0 3px #000,0 0 0 6px white,0 0 0 9px #000,
-  0 0 30px #d7192040
-}
-.topbar{
-  height:31px;display:flex;align-items:center;overflow:hidden;
-  background:#d71920;border-bottom:3px solid white;
-  font:18px "VT323",monospace
-}
-.ticker{white-space:nowrap;animation:scroll 18s linear infinite}
-@keyframes scroll{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
-header{
-  text-align:center;padding:28px 20px;border-bottom:4px dashed white;
-  position:relative
-}
-.logo{
-  width:min(360px,85%);max-height:190px;object-fit:contain;
-  filter:drop-shadow(4px 4px 0 #d71920);margin-bottom:15px
-}
-.location{
-  color:#18ee1c;font:20px "VT323",monospace;
-  letter-spacing:2px;text-shadow:0 0 6px #18ee1c
-}
-nav{
-  display:flex;justify-content:center;flex-wrap:wrap;
-  border-bottom:4px solid #d71920;background:#050505
-}
-nav a{
-  padding:12px 18px;color:white;text-decoration:none;
-  border-right:1px solid #444;font:20px "VT323",monospace
-}
-nav a:hover{background:#d71920}
-main{padding:clamp(22px,5vw,55px);text-align:center}
-.kicker{font:22px "VT323",monospace;color:#18ee1c;letter-spacing:3px}
-h1{
-  margin:20px 0;color:white;
-  font:clamp(42px,8vw,82px)/.95 "Special Elite","VT323",monospace;
-  text-shadow:5px 5px #d71920,-2px -2px white
-}
-h2{font:30px "VT323",monospace;color:#d71920}
-.intro{
-  max-width:720px;margin:20px auto;line-height:1.9;
-  font-size:15px
-}
-.rule{border:0;border-top:3px dashed white;margin:35px 0}
-.art-panel{
-  max-width:760px;margin:30px auto;padding:22px;
-  border:3px solid white;box-shadow:7px 7px #d71920;background:#080808
-}
-.art-panel .warning{
-  color:#d71920;font:25px "VT323",monospace;letter-spacing:2px
-}
-.disc{
-  width:min(280px,75vw);aspect-ratio:1;margin:24px auto;
-  border-radius:50%;border:3px solid #888;
-  background:repeating-radial-gradient(circle,#111 0 3px,#333 4px 5px);
-  display:grid;place-items:center;box-shadow:0 0 20px #ffffff20
-}
-.disc-label{
-  width:40%;aspect-ratio:1;border-radius:50%;background:#d71920;
-  border:3px solid white;display:grid;place-items:center;
-  font:22px "VT323",monospace;color:white
-}
-.video{
-  position:relative;width:100%;padding-bottom:56.25%;height:0;
-  margin:22px auto;background:#111;border:3px solid #d71920
-}
-.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.button{
-  display:inline-flex;align-items:center;justify-content:center;
-  margin:8px;padding:14px 22px;border:2px solid #d71920;
-  background:#080808;color:white;text-decoration:none;cursor:pointer;
-  font:22px "VT323",monospace;transition:.2s
-}
-.button:hover{background:#d71920;transform:translateY(-2px)}
-.merch-gate{
-  position:relative;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;width:min(450px,100%);min-height:125px;
-  margin:30px auto;padding:24px 20px;overflow:hidden;color:#18ee1c;
-  background:repeating-linear-gradient(0deg,#000 0 3px,#081008 3px 5px);
-  border:3px solid #18ee1c;outline:2px solid white;outline-offset:5px;
-  box-shadow:0 0 12px #18ee1c,0 0 30px #18ee1c55,inset 0 0 20px #18ee1c22;
-  font:34px "VT323",monospace;text-align:center;text-decoration:none;
-  animation:pulse 2.5s infinite
-}
-.merch-gate:before{
-  content:"";position:absolute;inset:7px;border:1px dashed #18ee1c66;
-  pointer-events:none
-}
-.merch-gate:hover{background:#18ee1c;color:#000;transform:scale(1.025)}
-.merch-subtitle{font:14px "Courier New",monospace;margin-top:8px}
-footer{
-  padding:25px;text-align:center;font-size:12px;line-height:1.8;
-  border-top:4px dashed white
-}
-.green{color:#18ee1c}
-@media(max-width:600px){
-  .page{width:94%;margin:12px auto}
-  nav a{padding:10px 12px;font-size:18px}
-  main{padding:24px 16px}
-}
-</style>
+  <link rel="icon" type="image/png" href="heart-attack-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=VT323&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #080808;
+      --dark: #111;
+      --white: #f4f1e9;
+      --red: #d71920;
+      --green: #18ee1c;
+      --display: "VT323", monospace;
+      --typewriter: "Special Elite", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--typewriter);
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: .12;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 3px,
+        rgba(255,255,255,.12) 4px
+      );
+    }
+
+    .shell {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    a { color: inherit; }
+
+    .ticker {
+      overflow: hidden;
+      border-bottom: 1px solid var(--white);
+      background: #050505;
+      color: var(--green);
+      padding: 5px 0;
+      font: 22px var(--display);
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 28s linear infinite;
+    }
+
+    .ticker-track span { padding-right: 35px; }
+
+    @keyframes ticker {
+      to { transform: translateX(-50%); }
+    }
+
+    header {
+      padding: 25px 0 20px;
+      border-bottom: 2px solid var(--red);
+    }
+
+    .masthead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    .brand { text-decoration: none; }
+
+    .brand-name {
+      font: 62px/.9 var(--display);
+      text-shadow: 3px 3px 0 var(--red);
+      letter-spacing: 1px;
+    }
+
+    .brand-subtitle {
+      margin-top: 10px;
+      color: var(--red);
+      font: 23px var(--display);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .live {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid var(--red);
+      padding: 7px 12px;
+      font: 22px var(--display);
+    }
+
+    .live-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 10px var(--red);
+      animation: blink 1.1s steps(2, start) infinite;
+    }
+
+    @keyframes blink {
+      to { visibility: hidden; }
+    }
+
+    /* MATCHING 1998-STYLE BOXED NAVIGATION */
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 12px;
+    }
+
+    nav a {
+      display: inline-block;
+      min-height: 39px;
+      padding: 8px 13px;
+      background: #161616;
+      color: var(--white);
+      border: 2px outset #eee;
+      font: 23px/1 var(--display);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: .15s ease;
+    }
+
+    nav a:hover {
+      color: var(--green);
+      background: #242424;
+      border-color: var(--green);
+    }
+
+    nav a:active {
+      border-style: inset;
+      transform: translateY(2px);
+    }
+
+    .button {
+      display: inline-block;
+      padding: 11px 17px;
+      background: var(--red);
+      color: #fff;
+      border: 2px outset #ff6565;
+      font: 25px/1 var(--display);
+      text-transform: uppercase;
+      text-decoration: underline;
+      cursor: pointer;
+      transition: .15s ease;
+    }
+
+    .button:hover {
+      background: #f0232b;
+      box-shadow: 0 0 12px rgba(215,25,32,.35);
+    }
+
+    .button:active {
+      border-style: inset;
+      transform: translateY(2px);
+    }
+
+    .button-outline {
+      background: #080808;
+      border-color: #eee;
+    }
+
+    .button-outline:hover {
+      background: #222;
+      color: var(--green);
+      border-color: var(--green);
+    }
+
+    .button-green {
+      background: var(--green);
+      border-color: #b8ffb9;
+      color: #050505;
+    }
+
+    .button-green:hover {
+      background: #7dff80;
+      color: #000;
+    }
+
+    .back-row {
+      padding-top: 25px;
+    }
+
+    .release {
+      padding: 45px 0 60px;
+    }
+
+    .eyebrow {
+      margin-bottom: 12px;
+      color: var(--green);
+      font: 24px var(--display);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .release h1 {
+      max-width: 900px;
+      font: clamp(48px, 8vw, 88px)/.92 var(--display);
+      text-transform: uppercase;
+      text-shadow: 4px 4px 0 var(--red);
+    }
+
+    .release h1 span {
+      color: var(--red);
+      text-shadow: none;
+    }
+
+    .release-subtitle {
+      margin-top: 16px;
+      color: #ccc;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .release-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: start;
+      gap: 38px;
+      margin-top: 35px;
+    }
+
+    /* YOUR GITHUB-UPLOADED COVER ART */
+
+    .cover-frame {
+      position: relative;
+      padding: 12px;
+      background: #111;
+      border: 2px solid var(--white);
+      box-shadow:
+        8px 8px 0 var(--red),
+        0 0 22px rgba(215,25,32,.12);
+    }
+
+    .cover-frame::before {
+      content: "HEART ATTACK RADIO / PHYSICAL RELEASE";
+      display: block;
+      padding: 7px 4px 11px;
+      color: var(--green);
+      font: 18px var(--display);
+      letter-spacing: 1px;
+    }
+
+    .cover-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      background: #050505;
+      border: 1px solid #444;
+    }
+
+    .cover-caption {
+      margin-top: 12px;
+      color: #999;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .release-info {
+      padding: 26px;
+      background: var(--dark);
+      border: 1px solid #777;
+      box-shadow: 5px 5px 0 #1b1b1b;
+    }
+
+    .release-tag {
+      color: var(--green);
+      font: 22px var(--display);
+      letter-spacing: 2px;
+    }
+
+    .release-info h2 {
+      margin: 14px 0;
+      color: var(--white);
+      font: 38px/1 var(--display);
+      font-weight: normal;
+      text-transform: uppercase;
+    }
+
+    .release-info p {
+      margin-bottom: 17px;
+      color: #d0d0d0;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .credit {
+      padding: 13px 0;
+      margin: 18px 0;
+      border-top: 1px solid #444;
+      border-bottom: 1px solid #444;
+      color: var(--white);
+      font: 23px var(--display);
+    }
+
+    .release-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px;
+      margin-top: 22px;
+    }
+
+    .note {
+      margin-top: 17px;
+      color: #999;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .video-section {
+      margin-top: 50px;
+      padding-top: 35px;
+      border-top: 2px solid var(--red);
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--red);
+    }
+
+    .section-heading h2 {
+      font: 37px/1 var(--display);
+      font-weight: normal;
+      text-transform: uppercase;
+    }
+
+    .section-heading span {
+      color: var(--green);
+      font: 21px var(--display);
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid #777;
+      background: #000;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    footer {
+      padding: 28px 0 35px;
+      border-top: 1px solid #444;
+      text-align: center;
+    }
+
+    .footer-title {
+      color: var(--red);
+      font: 28px var(--display);
+      letter-spacing: 2px;
+    }
+
+    footer p {
+      margin-top: 7px;
+      color: #888;
+      font-size: 11px;
+      line-height: 1.9;
+    }
+
+    .footer-green { color: var(--green); }
+
+    @media (max-width: 760px) {
+      .brand-name { font-size: 48px; }
+
+      .release-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .cover-frame {
+        width: min(100%, 520px);
+        margin: 0 auto;
+      }
+
+      nav { gap: 7px; }
+
+      nav a {
+        padding: 8px 10px;
+        font-size: 21px;
+      }
+
+      .release-info { padding: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<div class="page">
-
-<div class="topbar">
   <div class="ticker">
-    ★ heart attack radio ★ the destruction mix vol. 1 ★ d.j. lecture ★
-    physical media lives ★ no algorithm ★
-  </div>
-</div>
-
-<header>
-  <a href="index.html">
-    <img src="heart-attack-logo.png" class="logo" alt="heart attack radio logo">
-  </a>
-  <div class="location">austin, texas // worldwide</div>
-</header>
-
-<nav>
-  <a href="index.html">home</a>
-  <a href="index.html#listen">listen live</a>
-  <a href="#story">the story</a>
-  <a href="#watch">watch</a>
-  <a href="#buy">get the cd</a>
-</nav>
-
-<main>
-  <div class="kicker">heart attack radio presents</div>
-
-  <h1>the destruction<br>mix vol. 1</h1>
-
-  <div class="kicker">a physical mix cd // d.j. lecture</div>
-
-  <div class="disc" aria-label="decorative vinyl record">
-    <div class="disc-label">destruction<br>mix<br>vol. 1</div>
+    <div class="ticker-track">
+      <span>♥ HEART ATTACK RADIO ♥ THE DESTRUCTION MIX VOL. 1 ♥ PHYSICAL MEDIA ♥ D.J. LECTURE ♥</span>
+      <span>♥ HEART ATTACK RADIO ♥ THE DESTRUCTION MIX VOL. 1 ♥ PHYSICAL MEDIA ♥ D.J. LECTURE ♥</span>
+    </div>
   </div>
 
-  <p class="intro">
-    some mixes are background music.<br>
-    <strong>this one is a transmission.</strong>
-  </p>
+  <div class="shell">
+    <header>
+      <div class="masthead">
+        <a class="brand" href="index.html">
+          <div class="brand-name">HEART ATTACK</div>
+          <div class="brand-subtitle">Radio Station</div>
+        </a>
 
-  <hr class="rule">
-
-  <section id="story">
-    <h2>// the story</h2>
-
-    <p class="intro">
-      the destruction mix vol. 1 is a physical mix-cd release from d.j. lecture.
-      built for loud music, unexpected selections, and the feeling of discovering
-      a mix that somebody made because they needed you to hear it.
-    </p>
-
-    <p class="intro">
-      this is not an algorithm choosing what comes next. this is a real mix,
-      put together with intention, pressed onto a physical cd, and sent out
-      into the world.
-    </p>
-
-    <p class="intro">
-      keep it in the car. play it at the function. lend it to somebody who
-      needs to hear something different. make a copy for a friend and keep
-      physical music moving.
-    </p>
-
-    <p class="intro green">
-      no algorithm. no corporate radio. no rules.
-    </p>
-  </section>
-
-  <hr class="rule">
-
-  <section id="watch">
-    <h2>// enter the transmission</h2>
-
-    <p class="intro">
-      watch the video. hear the energy. then take the physical mix home.
-    </p>
-
-    <div class="art-panel">
-      <div class="warning">now transmitting // the destruction mix</div>
-
-      <div class="video">
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/uoODeJ07PSw"
-          title="the destruction mix vol. 1 by d.j. lecture"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
+        <div class="live">
+          <span class="live-dot"></span>
+          <span>INDEPENDENT RELEASE</span>
+        </div>
       </div>
 
-      <a class="button"
-         href="https://youtu.be/uoODeJ07PSw?si=TNRgY_AdWJtE0e5a"
-         target="_blank" rel="noopener noreferrer">
-        watch on youtube
+      <nav aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="index.html#listen">Listen</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#shows">Shows</a>
+        <a href="index.html#merch">Merch</a>
+      </nav>
+    </header>
+
+    <div class="back-row">
+      <a class="button button-outline" href="index.html">
+        ← Back to Heart Attack Radio
       </a>
     </div>
-  </section>
 
-  <hr class="rule">
+    <main>
+      <section class="release">
+        <div class="eyebrow">Heart Attack Radio / Physical Media</div>
 
-  <section id="buy">
-    <h2>// support physical music</h2>
+        <h1>
+          The Destruction<br>
+          <span>Mix Vol. 1</span>
+        </h1>
 
-    <p class="intro">
-      this is a physical cd release. if you believe mixes should live outside
-      of a screen, support the release and add one to your collection.
-    </p>
+        <p class="release-subtitle">
+          A MIX CD BY D.J. LECTURE / INDEPENDENT RELEASE
+        </p>
 
-    <a class="merch-gate"
-       href="https://heartattackradio.bigcartel.com/"
-       target="_blank" rel="noopener noreferrer">
-      get the destruction mix
-      <span class="merch-subtitle">physical cd // heart attack radio shop</span>
-    </a>
+        <div class="release-layout">
+          <div>
+            <div class="cover-frame">
+              <img
+                class="cover-image"
+                src="destruction-mix-cover.jpg"
+                alt="The Destruction Mix Vol. 1 CD cover by D.J. Lecture"
+                loading="eager">
 
-    <p class="intro">
-      the shop opens in a new tab. find the destruction mix vol. 1 in the
-      heart attack radio big cartel store.
-    </p>
+              <div class="cover-caption">
+                OFFICIAL COVER ART / THE DESTRUCTION MIX VOL. 1
+              </div>
+            </div>
+          </div>
 
-    <a class="button" href="index.html">return to heart attack radio</a>
-  </section>
-</main>
+          <div class="release-info">
+            <div class="release-tag">H.A.R. RELEASE / VOL. 001</div>
 
-<footer>
-  <strong>heart attack radio</strong><br>
-  <span class="green">austin, texas // worldwide</span><br><br>
-  © 2026 heart attack radio<br>
-  no algorithm. no corporate radio. no rules.
-</footer>
+            <h2>The Destruction Mix</h2>
 
-</div>
-</body>
-</html>
+            <p>
+              More than a playlist. The Destruction Mix Vol. 1 is a
+              physical mix CD by D.J. Lecture, made for listeners who
+              appreciate the art of selecting records and keeping music
+              culture tangible.
+            </p>
+
+            <div class="credit">
+              ARTIST: D.J. LECTURE
+            </div>
+
+            <p>
+              Support independent music and add the physical release
+              to your collection through the Heart Attack Radio shop.
+            </p>
+
+            <div class="release-actions">
+              <a
+                class="button button-green"
+                href="https://heartattackradio.bigcartel.com/"
+                target="_blank"
+                rel="noopener noreferrer">
+                Buy the CD ↗
+              </a>
+
+              <a
+                class="button button-outline"
+                href="https://youtu.be/uoODeJ07PSw?si=TNRgY_AdWJtE0e5a"
+                target="_blank"
+                rel="noopener noreferrer">
+                Watch on YouTube ↗
+              </a>
+            </div>
+
+            <p class="note">
+              Physical release. Independent music. Direct support.
+              Thank you for supporting Heart Attack Radio.
+            </p>
+          </div>
+        </div>
+
+        <div class="video-section">
+          <div class="section-heading">
+            <h2>Listen / Watch</h2>
+            <span>The Destruction Mix</span>
+          </div>
+
+          <div class="video-frame">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/uoODeJ07PSw"
+              title="The Destruction Mix Vol. 1 by D.J. Lecture"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-title">HEART ATTACK RADIO</div>
+      <p>
+        Independent radio from <span class="footer-green">Austin, Texas</span>.<br>
+        Est. 2025 / No algorithm.
+      </p>
+      <p>© <span id="currentYear">2026</span> Heart Attack Radio. All rights reserved.</p>
+    </footer>
+  </div>
