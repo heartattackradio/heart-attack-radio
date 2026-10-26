@@ -1,375 +1,1045 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="websitelaunches-verification" content="eec74f281f9e15b6f6970c912ad7f466">
-<title>heart attack radio</title>
-<link rel="icon" type="image/gif" href="heart-attack-gif.gif">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=VT323&family=Special+Elite&display=swap');
+  <title>Heart Attack Radio — Austin, Texas</title>
+  <meta name="description" content="Heart Attack Radio. Independent radio, underground music, Austin, Texas. No algorithm.">
+  <meta name="theme-color" content="#080808">
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;background:#000;color:#fff;
-  font-family:"Courier New",monospace;
-  text-transform:lowercase;overflow-x:hidden
-}
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;
-  z-index:9998;
-  background:repeating-linear-gradient(
-    0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 4px
-  );
-}
-body:after{
-  content:"";position:fixed;inset:0;pointer-events:none;
-  z-index:9997;background:rgba(255,255,255,.008);
-  animation:flicker .12s infinite
-}
-@keyframes flicker{50%{opacity:.7}}
-@keyframes blink{50%{opacity:.2}}
-@keyframes ticker{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
-@keyframes titleflicker{0%,94%,100%{opacity:1}96%{opacity:.65}}
-@keyframes mediaMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@keyframes greenpulse{
-  0%,100%{box-shadow:0 0 8px #18ee1c, inset 0 0 8px #18ee1c22}
-  50%{box-shadow:0 0 22px #18ee1c, inset 0 0 16px #18ee1c44}
-}
+  <link rel="icon" type="image/png" href="heart-attack-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-.page{
-  width:min(1120px,94%);margin:18px auto;background:#000;
-  border:4px solid #d71920;
-  box-shadow:0 0 0 3px #000,0 0 0 6px #fff,0 0 0 9px #000,
-  0 0 30px #d7192040
-}
-.topbar{
-  background:#d71920;height:31px;overflow:hidden;
-  display:flex;align-items:center;border-bottom:3px solid white;
-  font:18px "VT323",monospace
-}
-.ticker{white-space:nowrap;animation:ticker 18s linear infinite}
-header{
-  position:relative;text-align:center;padding:30px 20px 25px;
-  border-bottom:4px dashed white
-}
-header:before,header:after{
-  content:"★ ★ ★ ★ ★";position:absolute;top:7px;
-  color:#d71920;font-size:11px;animation:blink 1s infinite
-}
-header:before{left:10px}
-header:after{right:10px;animation-duration:1.4s}
-.logo{
-  width:min(480px,90%);max-height:260px;object-fit:contain;
-  display:block;margin:0 auto 18px;
-  filter:drop-shadow(5px 5px 0 #d71920) drop-shadow(-2px -2px 0 white)
-}
-.tagline{font-size:clamp(12px,2.5vw,18px);letter-spacing:2px;font-weight:bold}
-.location{
-  margin-top:10px;color:#18ee1c;font:20px "VT323",monospace;
-  letter-spacing:2px;text-shadow:0 0 5px #18ee1c
-}
-.location:after{content:" ●";color:#d71920;animation:blink 1s infinite}
-nav{
-  display:flex;justify-content:center;flex-wrap:wrap;
-  background:#050505;border-bottom:4px solid #d71920
-}
-nav a{
-  padding:12px 20px;color:white;border-right:1px solid #444;
-  font:20px "VT323",monospace;text-decoration:none;transition:.15s
-}
-nav a:hover{background:#d71920;text-shadow:2px 2px #000}
-.hero{
-  padding:35px 20px;text-align:center;
-  border-bottom:4px dashed white;background:#000
-}
-.hero-gif{
-  width:min(720px,100%);max-height:430px;object-fit:contain;
-  display:block;margin:0 auto 30px;border:4px solid white;
-  background:#000;box-shadow:8px 8px 0 #d71920,0 0 20px #ffffff14
-}
-h1{
-  margin:10px 0 12px;font-family:"Special Elite","VT323",monospace;
-  font-size:clamp(38px,8vw,82px);letter-spacing:2px;line-height:.9;
-  text-shadow:5px 5px #d71920,-2px -2px white;
-  animation:titleflicker 2.2s infinite alternate
-}
-.hero p,.section-text{
-  max-width:760px;margin:15px auto;line-height:1.7;font-size:14px
-}
-.media-ticker{
-  max-width:920px;height:105px;margin:28px auto;overflow:hidden;
-  background:#050505;border-top:4px solid white;
-  border-bottom:4px solid #d71920;box-shadow:0 5px white
-}
-.media-track{
-  display:flex;align-items:center;gap:65px;width:max-content;height:100%;
-  animation:mediaMove 20s linear infinite
-}
-.cassette{
-  width:110px;height:65px;flex-shrink:0;position:relative;
-  background:#bdbdbd;border:4px solid white;box-shadow:5px 5px #d71920;
-  transform:rotate(-3deg)
-}
-.cassette:before{content:"REC";position:absolute;top:2px;left:6px;color:#d71920;font:13px "VT323"}
-.cassette:after{content:"110";position:absolute;bottom:2px;right:6px;color:white;font:13px "VT323"}
-.cassette-label{
-  position:absolute;left:20px;right:20px;top:13px;height:22px;
-  background:white;color:black;border:2px solid black;
-  font:13px/18px "VT323";text-align:center
-}
-.reel{
-  position:absolute;bottom:4px;width:13px;height:13px;border:3px solid #222;
-  border-radius:50%;background:#777
-}
-.reel.left{left:25px}.reel.right{right:25px}
-.cd{
-  width:75px;height:75px;flex-shrink:0;border-radius:50%;
-  background:conic-gradient(#ddd,#777,#fff,#999,#eee,#555,#ddd);
-  border:3px solid white;position:relative;box-shadow:4px 4px #d71920
-}
-.cd:after{
-  content:"";position:absolute;inset:25px;border-radius:50%;
-  background:#111;border:3px solid white
-}
-.vinyl{
-  width:75px;height:75px;flex-shrink:0;border-radius:50%;
-  background:repeating-radial-gradient(circle,#111 0 3px,#292929 4px 5px);
-  border:2px solid #555;position:relative
-}
-.vinyl:after{
-  content:"";position:absolute;inset:24px;background:#d71920;
-  border-radius:50%;border:2px solid white
-}
-.player{
-  width:min(650px,100%);margin:40px auto 0;padding:20px;
-  border:4px solid white;box-shadow:7px 7px #d71920;background:#080808
-}
-.live{color:#18ee1c;font:24px "VT323";margin-bottom:15px;text-shadow:0 0 7px #18ee1c}
-.player iframe{display:block;width:100%;height:300px;border:2px solid #d71920;background:#111}
-.player-status{font-size:12px;line-height:1.5;color:#ddd}
-.player-controls{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:15px}
-.button{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:13px 20px;background:#080808;color:white;
-  border:2px solid #d71920;text-decoration:none;cursor:pointer;
-  font:20px "VT323",monospace;transition:.2s
-}
-.button:hover{background:#d71920;color:white;transform:translateY(-2px)}
-section{padding:35px 25px;border-bottom:4px dashed white}
-.section-title{
-  color:#d71920;font:30px "VT323",monospace;
-  border-bottom:2px solid white;padding-bottom:10px;margin-bottom:20px
-}
-.panama{color:#18ee1c;font:22px "VT323"}
-.grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px
-}
-.card{border:2px solid white;padding:18px;background:#070707;box-shadow:4px 4px #d71920}
-.card h3{font:26px "VT323";color:#18ee1c;margin:0 0 10px}
-.card p{font-size:13px;line-height:1.6}
-.merch-gate{
-  position:relative;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;width:min(440px,100%);min-height:125px;
-  margin:30px auto;padding:24px 20px;overflow:hidden;
-  color:#18ee1c;background:
-    repeating-linear-gradient(0deg,#000 0 3px,#081008 3px 5px);
-  border:3px solid #18ee1c;outline:2px solid #fff;outline-offset:5px;
-  box-shadow:0 0 12px #18ee1c,0 0 30px #18ee1c55,inset 0 0 20px #18ee1c22;
-  font:34px "VT323",monospace;text-align:center;text-decoration:none;
-  animation:greenpulse 2.5s infinite
-}
-.merch-gate:before{
-  content:"";position:absolute;inset:7px;border:1px dashed #18ee1c66;
-  pointer-events:none
-}
-.merch-gate:hover{
-  color:#000;background:#18ee1c;transform:scale(1.025);
-  box-shadow:0 0 25px #18ee1c,0 0 50px #18ee1c66
-}
-.merch-subtitle{font:14px "Courier New",monospace;margin-top:8px}
-.socials{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-.social{
-  padding:12px 18px;border:2px solid white;color:white;
-  text-decoration:none;font:20px "VT323"
-}
-.social:hover{background:#d71920;border-color:#d71920}
-footer{
-  padding:30px 20px;text-align:center;font-size:12px;line-height:1.8
-}
-.footer-green{color:#18ee1c}
-@media(max-width:600px){
-  .page{width:94%;margin:12px auto}
-  nav a{padding:10px 12px;font-size:18px}
-  .hero{padding:25px 14px}
-  section{padding:28px 16px}
-  .player{padding:12px}
-  .player iframe{height:320px}
-}
-</style>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=VT323&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #080808;
+      --dark: #111111;
+      --white: #f4f1e9;
+      --red: #d71920;
+      --green: #18ee1c;
+      --gray: #888888;
+      --border: #f4f1e9;
+      --display: "VT323", monospace;
+      --typewriter: "Special Elite", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 95px;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--typewriter);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.12;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(255, 255, 255, 0.12) 4px
+      );
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      background: radial-gradient(
+        ellipse at center,
+        transparent 45%,
+        rgba(0, 0, 0, 0.55) 100%
+      );
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .site-shell {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    .top-strip {
+      border-bottom: 1px solid var(--white);
+      background: #050505;
+      padding: 5px 0;
+      overflow: hidden;
+      font-family: var(--display);
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 28s linear infinite;
+    }
+
+    .ticker-track span {
+      padding-right: 36px;
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    header {
+      padding: 25px 0 20px;
+      border-bottom: 2px solid var(--red);
+    }
+
+    .masthead {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    .brand {
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .brand-name {
+      color: var(--white);
+      font-family: var(--display);
+      font-size: clamp(34px, 6vw, 62px);
+      line-height: 0.9;
+      letter-spacing: 1px;
+      text-shadow: 3px 3px 0 var(--red);
+    }
+
+    .brand-subtitle {
+      margin-top: 10px;
+      color: var(--red);
+      font-family: var(--display);
+      font-size: 23px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .live-indicator {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid var(--red);
+      padding: 7px 12px;
+      font-family: var(--display);
+      font-size: 22px;
+      white-space: nowrap;
+    }
+
+    .live-dot {
+      height: 10px;
+      width: 10px;
+      background: var(--red);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--red);
+      animation: blink 1.1s steps(2, start) infinite;
+    }
+
+    @keyframes blink {
+      to {
+        visibility: hidden;
+      }
+    }
+
+    /* 1998-STYLE BOXED NAVIGATION BUTTONS */
+
+    nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 12px;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: 8px 13px;
+      min-height: 39px;
+      background: #161616;
+      color: var(--white);
+      border: 2px outset #eeeeee;
+      font-family: var(--display);
+      font-size: 23px;
+      line-height: 1;
+      letter-spacing: 1px;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      text-transform: uppercase;
+      transition:
+        color 0.15s ease,
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.08s ease;
+    }
+
+    nav a:hover {
+      color: var(--green);
+      background: #242424;
+      border-color: var(--green);
+      text-shadow: 0 0 5px rgba(24, 238, 28, 0.4);
+    }
+
+    nav a:active {
+      border-style: inset;
+      transform: translateY(2px);
+      background: #090909;
+    }
+
+    nav a:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 4px;
+    }
+
+    .hero {
+      padding: 65px 0 55px;
+      border-bottom: 1px solid #444;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-family: var(--display);
+      font-size: 25px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      color: var(--white);
+      font-family: var(--display);
+      font-size: clamp(47px, 9vw, 100px);
+      line-height: 0.9;
+      font-weight: normal;
+      text-transform: uppercase;
+      text-shadow: 4px 4px 0 var(--red);
+    }
+
+    .hero h1 span {
+      color: var(--red);
+      text-shadow: none;
+    }
+
+    .hero-copy {
+      max-width: 660px;
+      margin-top: 26px;
+      font-size: 15px;
+      line-height: 1.9;
+      color: #d2d2d2;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 27px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 11px 17px;
+      background: var(--red);
+      border: 2px outset #ff6565;
+      color: #fff;
+      font-family: var(--display);
+      font-size: 25px;
+      line-height: 1;
+      text-decoration: underline;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .button:hover {
+      background: #f0232b;
+      box-shadow: 0 0 12px rgba(215, 25, 32, 0.35);
+    }
+
+    .button:active {
+      border-style: inset;
+      transform: translateY(2px);
+    }
+
+    .button-outline {
+      background: var(--black);
+      color: var(--white);
+      border: 2px outset #eee;
+    }
+
+    .button-outline:hover {
+      background: #222;
+      color: var(--green);
+      border-color: var(--green);
+    }
+
+    .button-green {
+      background: var(--green);
+      color: #050505;
+      border-color: #b8ffb9;
+    }
+
+    .button-green:hover {
+      background: #7dff80;
+      color: #000;
+      box-shadow: 0 0 16px rgba(24, 238, 28, 0.4);
+    }
+
+    section {
+      padding: 55px 0;
+      border-bottom: 1px solid #444;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 25px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--red);
+    }
+
+    .section-heading h2 {
+      font-family: var(--display);
+      font-size: clamp(34px, 5vw, 48px);
+      line-height: 1;
+      font-weight: normal;
+      text-transform: uppercase;
+    }
+
+    .section-heading span {
+      color: var(--green);
+      font-family: var(--display);
+      font-size: 22px;
+    }
+
+    .panel {
+      background: var(--dark);
+      border: 1px solid #777;
+      padding: 22px;
+      box-shadow: 5px 5px 0 #1b1b1b;
+    }
+
+    .radio-panel {
+      border: 2px solid var(--white);
+      padding: 22px;
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.91), rgba(0, 0, 0, 0.94)),
+        repeating-linear-gradient(
+          135deg,
+          #202020 0px,
+          #202020 2px,
+          #101010 2px,
+          #101010 5px
+        );
+    }
+
+    .radio-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .radio-status strong {
+      font-family: var(--display);
+      font-size: 30px;
+      font-weight: normal;
+      text-transform: uppercase;
+    }
+
+    .radio-status span {
+      color: var(--green);
+      font-family: var(--display);
+      font-size: 22px;
+    }
+
+    .radio-frame {
+      width: 100%;
+      min-height: 155px;
+      border: 1px solid #666;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .radio-frame iframe {
+      display: block;
+      width: 100%;
+      height: 180px;
+      border: 0;
+      background: #000;
+    }
+
+    .radio-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .radio-note {
+      color: #bcbcbc;
+      font-size: 12px;
+      line-height: 1.8;
+      margin-top: 15px;
+    }
+
+    .radio-note strong {
+      color: var(--white);
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .panel h3 {
+      color: var(--red);
+      font-family: var(--display);
+      font-size: 31px;
+      line-height: 1.1;
+      font-weight: normal;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .panel p {
+      color: #d1d1d1;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .panel .text-link {
+      display: inline-block;
+      margin-top: 17px;
+      color: var(--green);
+      font-family: var(--display);
+      font-size: 23px;
+      text-decoration: underline;
+    }
+
+    .mix-panel {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--red);
+      background:
+        radial-gradient(ellipse at top right, rgba(215, 25, 32, 0.15), transparent 55%),
+        #0b0b0b;
+      padding: 28px;
+    }
+
+    .mix-label {
+      color: var(--green);
+      font-family: var(--display);
+      font-size: 22px;
+      letter-spacing: 2px;
+    }
+
+    .mix-panel h3 {
+      color: var(--white);
+      font-family: var(--display);
+      font-size: clamp(37px, 6vw, 62px);
+      font-weight: normal;
+      line-height: 0.98;
+      text-transform: uppercase;
+      margin: 16px 0;
+    }
+
+    .mix-panel h3 span {
+      color: var(--red);
+    }
+
+    .mix-panel p {
+      max-width: 650px;
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
+    .mix-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px;
+    }
+
+    /* MERCH ENTRANCE */
+
+    .merch-section {
+      padding-bottom: 65px;
+    }
+
+    .merch-gate {
+      position: relative;
+      display: block;
+      width: 100%;
+      min-height: 240px;
+      padding: 35px 22px;
+      overflow: hidden;
+      text-align: center;
+      text-decoration: none;
+      color: var(--white);
+      border: 2px solid var(--green);
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.9)),
+        repeating-linear-gradient(
+          0deg,
+          #242424 0px,
+          #242424 1px,
+          #111 2px,
+          #111 4px
+        );
+      box-shadow:
+        inset 0 0 30px rgba(24, 238, 28, 0.08),
+        0 0 10px rgba(24, 238, 28, 0.12);
+      transition:
+        box-shadow 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .merch-gate::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px dashed rgba(24, 238, 28, 0.42);
+      pointer-events: none;
+    }
+
+    .merch-gate::after {
+      content: "H.A.R. / EST. 2025 / INDEPENDENT";
+      position: absolute;
+      right: 16px;
+      bottom: 12px;
+      color: rgba(24, 238, 28, 0.75);
+      font-family: var(--display);
+      font-size: 16px;
+      letter-spacing: 2px;
+    }
+
+    .merch-gate:hover {
+      transform: translateY(-2px);
+      border-color: #aaffab;
+      box-shadow:
+        inset 0 0 40px rgba(24, 238, 28, 0.15),
+        0 0 24px rgba(24, 238, 28, 0.28);
+    }
+
+    .merch-gate:active {
+      transform: translateY(1px);
+    }
+
+    .merch-kicker {
+      position: relative;
+      z-index: 1;
+      color: var(--green);
+      font-family: var(--display);
+      font-size: 23px;
+      letter-spacing: 4px;
+    }
+
+    .merch-title {
+      position: relative;
+      z-index: 1;
+      margin: 8px 0 5px;
+      font-family: var(--display);
+      font-size: clamp(45px, 8vw, 76px);
+      font-weight: normal;
+      line-height: 1;
+      text-transform: uppercase;
+      text-shadow: 3px 3px 0 #154d17;
+    }
+
+    .merch-description {
+      position: relative;
+      z-index: 1;
+      color: #c8c8c8;
+      font-size: 13px;
+    }
+
+    .merch-enter {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      margin-top: 22px;
+      padding: 8px 17px;
+      border: 1px solid var(--green);
+      color: var(--green);
+      background: #050505;
+      font-family: var(--display);
+      font-size: 25px;
+      text-decoration: underline;
+      text-transform: uppercase;
+    }
+
+    .merch-gate:hover .merch-enter {
+      color: #000;
+      background: var(--green);
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .social-link {
+      display: block;
+      padding: 17px 12px;
+      text-align: center;
+      background: #111;
+      border: 2px outset #ddd;
+      font-family: var(--display);
+      font-size: 24px;
+      text-decoration: underline;
+      text-transform: uppercase;
+      transition: 0.15s ease;
+    }
+
+    .social-link:hover {
+      color: var(--green);
+      border-color: var(--green);
+      background: #1c1c1c;
+    }
+
+    .social-link:active {
+      border-style: inset;
+      transform: translateY(2px);
+    }
+
+    footer {
+      padding: 28px 0 35px;
+      text-align: center;
+    }
+
+    .footer-title {
+      font-family: var(--display);
+      color: var(--red);
+      font-size: 28px;
+      letter-spacing: 2px;
+    }
+
+    footer p {
+      margin-top: 7px;
+      color: #888;
+      font-size: 11px;
+      line-height: 1.9;
+    }
+
+    .footer-green {
+      color: var(--green);
+    }
+
+    @media (max-width: 680px) {
+      .masthead {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      nav {
+        gap: 7px;
+      }
+
+      nav a {
+        padding: 8px 10px;
+        font-size: 21px;
+      }
+
+      .hero {
+        padding: 48px 0 42px;
+      }
+
+      section {
+        padding: 42px 0;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+
+      .social-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .radio-panel {
+        padding: 14px;
+      }
+
+      .radio-frame iframe {
+        height: 200px;
+      }
+
+      .merch-gate {
+        min-height: 220px;
+        padding: 30px 14px;
+      }
+
+      .merch-gate::after {
+        font-size: 13px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<div class="page">
-
-<div class="topbar">
-  <div class="ticker">
-    ★ heart attack radio ★ austin texas ★ 110 panameño ★ no algorithm ★
-    underground sounds ★ worldwide transmission ★
-  </div>
-</div>
-
-<header>
-  <img src="heart-attack-logo.png" alt="heart attack radio logo" class="logo">
-  <div class="tagline">no algorithm. no corporate radio. no rules.</div>
-  <div class="location">austin, texas</div>
-</header>
-
-<nav>
-  <a href="#listen">listen</a>
-  <a href="#about">about</a>
-  <a href="#shows">shows</a>
-  <a href="destruction-mix.html">the destruction mix</a>
-  <a href="#merch">merch</a>
-  <a href="#social">social</a>
-</nav>
-
-<div class="hero">
-  <img src="heart-attack-gif.gif" alt="heart attack radio" class="hero-gif">
-
-  <h1>heart attack radio</h1>
-  <p>no algorithm. no corporate radio. no rules. breaking your dial...</p>
-
-  <div class="media-ticker">
-    <div class="media-track">
-      <div class="cassette"><div class="cassette-label">heart attack</div><div class="reel left"></div><div class="reel right"></div></div>
-      <div class="cd"></div><div class="vinyl"></div>
-      <div class="cassette"><div class="cassette-label">110 panameño</div><div class="reel left"></div><div class="reel right"></div></div>
-      <div class="cd"></div><div class="vinyl"></div>
-      <div class="cassette"><div class="cassette-label">heart attack</div><div class="reel left"></div><div class="reel right"></div></div>
-      <div class="cd"></div><div class="vinyl"></div>
+  <div class="top-strip" aria-label="Heart Attack Radio ticker">
+    <div class="ticker-track">
+      <span>♥ HEART ATTACK RADIO ♥ AUSTIN TEXAS ♥ NO ALGORITHM ♥ INDEPENDENT RADIO ♥ MUSIC WITHOUT PERMISSION ♥</span>
+      <span>♥ HEART ATTACK RADIO ♥ AUSTIN TEXAS ♥ NO ALGORITHM ♥ INDEPENDENT RADIO ♥ MUSIC WITHOUT PERMISSION ♥</span>
     </div>
   </div>
 
-  <div class="player" id="listen">
-    <div class="live">● live transmission</div>
+  <div class="site-shell">
+    <header>
+      <div class="masthead">
+        <a class="brand" href="#home" aria-label="Heart Attack Radio home">
+          <div class="brand-name">HEART ATTACK</div>
+          <div class="brand-subtitle">Radio Station</div>
+        </a>
 
-    <iframe
-      id="heartAttackRadioFrame"
-      src="https://thehearttackradio.radio12345.com/"
-      title="heart attack radio live player"
-      loading="eager"
-      allow="autoplay"
-      frameborder="0">
-    </iframe>
+        <div class="live-indicator">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>ON AIR / OFF AIR</span>
+        </div>
+      </div>
 
-    <p class="player-status" id="radio-status" role="status" aria-live="polite">
-      if the live signal does not load, reload the player below.
-    </p>
+      <nav aria-label="Main navigation">
+        <a href="#listen">Listen</a>
+        <a href="#about">About</a>
+        <a href="#shows">Shows</a>
+        <a href="destruction-mix.html">The Destruction Mix</a>
+        <a href="#merch">Merch</a>
+        <a href="#social">Social</a>
+      </nav>
+    </header>
 
-    <div class="player-controls">
-      <button class="button" type="button" onclick="reloadHeartAttackRadio()">
-        reload player
-      </button>
-      <a class="button"
-         href="https://thehearttackradio.radio12345.com/"
-         target="_blank" rel="noopener noreferrer">
-        open live player
-      </a>
-    </div>
+    <main>
+      <section class="hero" id="home">
+        <div class="eyebrow">Independent radio / Austin, Texas</div>
+
+        <h1>
+          No algorithm.<br>
+          Just <span>music.</span>
+        </h1>
+
+        <p class="hero-copy">
+          Heart Attack Radio is an independent radio project built around
+          music, culture, and the sounds that deserve to be heard.
+          Broadcasting from the heart of Texas, with no interest in
+          following the rules of the algorithm.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button" href="#listen">Tune In</a>
+          <a class="button button-outline" href="#about">Enter the Station</a>
+        </div>
+      </section>
+
+      <section id="listen">
+        <div class="section-heading">
+          <h2>Listen Live</h2>
+          <span>Radio Transmission / 001</span>
+        </div>
+
+        <div class="radio-panel">
+          <div class="radio-status">
+            <strong>Heart Attack Radio</strong>
+            <span>● LIVE PLAYER</span>
+          </div>
+
+          <div class="radio-frame">
+            <iframe
+              id="heartAttackRadioFrame"
+              src="https://thehearttackradio.radio12345.com/"
+              title="Heart Attack Radio live player"
+              loading="eager"
+              allow="autoplay"
+              referrerpolicy="strict-origin-when-cross-origin">
+            </iframe>
+          </div>
+
+          <div class="radio-controls">
+            <button
+              class="button"
+              type="button"
+              id="refreshRadioButton"
+              onclick="reloadHeartAttackRadio()">
+              ↻ Refresh Player
+            </button>
+
+            <a
+              class="button button-outline"
+              href="https://thehearttackradio.radio12345.com/"
+              target="_blank"
+              rel="noopener noreferrer">
+              Open Radio Separately ↗
+            </a>
+          </div>
+
+          <p class="radio-note">
+            <strong>Having trouble hearing the live broadcast?</strong>
+            Try refreshing the player. If the station still plays its
+            disconnected audio, open the radio player separately and
+            try again. Some playback and connection behavior is controlled
+            by the external radio service.
+          </p>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="section-heading">
+          <h2>About the Station</h2>
+          <span>Independent / Est. 2025</span>
+        </div>
+
+        <div class="two-column">
+          <div class="panel">
+            <h3>Not Another Playlist</h3>
+            <p>
+              Heart Attack Radio exists for music that lives outside the
+              usual rotation. The forgotten records, underground sounds,
+              local voices, and music that connects people across scenes
+              and generations.
+            </p>
+          </div>
+
+          <div class="panel">
+            <h3>Austin, Texas</h3>
+            <p>
+              Independent in spirit and community-driven by design.
+              Heart Attack Radio is a home for musical discovery,
+              creative expression, and the culture that grows around it.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="shows">
+        <div class="section-heading">
+          <h2>Shows & Transmissions</h2>
+          <span>On the Air / In the Mix</span>
+        </div>
+
+        <div class="two-column">
+          <div class="panel">
+            <h3>Radio Programs</h3>
+            <p>
+              Music selections, guest mixes, independent programming,
+              and sounds from across genres. Check the station for
+              current broadcasts and new transmissions.
+            </p>
+          </div>
+
+          <div class="panel">
+            <h3>Send a Transmission</h3>
+            <p>
+              DJs, selectors, musicians, and independent creatives:
+              Heart Attack Radio is interested in hearing what you are
+              working on.
+            </p>
+            <a class="text-link" href="mailto:theheartattackradio@gmail.com">
+              Contact the Station ↗
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="destruction">
+        <div class="section-heading">
+          <h2>Featured Release</h2>
+          <span>Physical Media / Independent Release</span>
+        </div>
+
+        <div class="mix-panel">
+          <div class="mix-label">HEART ATTACK RADIO PRESENTS</div>
+
+          <h3>
+            The Destruction<br>
+            <span>Mix Vol. 1</span>
+          </h3>
+
+          <p>
+            A physical mix CD from D.J. Lecture. Made for people who
+            still believe in owning music, discovering records, and
+            keeping independent music culture alive.
+          </p>
+
+          <div class="mix-buttons">
+            <a class="button" href="destruction-mix.html">
+              Explore the Mix
+            </a>
+
+            <a
+              class="button button-outline"
+              href="https://heartattackradio.bigcartel.com/">
+              Buy the CD ↗
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="merch-section" id="merch">
+        <div class="section-heading">
+          <h2>Official Merchandise</h2>
+          <span>Physical Media / Station Goods</span>
+        </div>
+
+        <a
+          class="merch-gate"
+          href="https://heartattackradio.bigcartel.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Enter the Heart Attack Radio shop">
+
+          <div class="merch-kicker">HEART ATTACK RADIO / ONLINE SHOP</div>
+
+          <div class="merch-title">Enter the Shop</div>
+
+          <div class="merch-description">
+            CDs / Merchandise / Independent Releases
+          </div>
+
+          <span class="merch-enter">Enter Shop ↗</span>
+        </a>
+      </section>
+
+      <section id="social">
+        <div class="section-heading">
+          <h2>Find the Station</h2>
+          <span>Stay Connected</span>
+        </div>
+
+        <div class="social-grid">
+          <a
+            class="social-link"
+            href="https://www.instagram.com/theheartattackradio/"
+            target="_blank"
+            rel="noopener noreferrer">
+            Instagram ↗
+          </a>
+
+          <a
+            class="social-link"
+            href="https://www.youtube.com/@theheartattackradio"
+            target="_blank"
+            rel="noopener noreferrer">
+            YouTube ↗
+          </a>
+
+          <a
+            class="social-link"
+            href="https://www.tiktok.com/@theheartattackradio"
+            target="_blank"
+            rel="noopener noreferrer">
+            TikTok ↗
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-title">HEART ATTACK RADIO</div>
+
+      <p>
+        Independent radio from <span class="footer-green">Austin, Texas</span>.
+        <br>
+        Est. 2025 / No algorithm.
+      </p>
+
+      <p>© <span id="currentYear">2026</span> Heart Attack Radio. All rights reserved.</p>
+    </footer>
   </div>
-</div>
 
-<section id="about">
-  <div class="section-title">// about the station</div>
-  <p class="section-text">
-    heart attack radio is an independent underground radio bringing sounds
-    from austin to your ears. we are the club in your radio, phone or any
-    device, and we are the home of the 110.
-    <br><br>
-    110. dancehall. reggae. salsa. cumbia. hip-hop. house. disco. kompa.
-    rock. latin sounds. underground sounds. the real deal.
-    <br><br>
-    if it moves the people, it belongs here.
-    <br><br>
-    <span class="panama">110 panameño // worldwide</span>
-  </p>
-</section>
+  <script>
+    function reloadHeartAttackRadio() {
+      const frame = document.getElementById("heartAttackRadioFrame");
+      const button = document.getElementById("refreshRadioButton");
 
-<section id="shows">
-  <div class="section-title">// on air</div>
-  <div class="grid">
-    <div class="card">
-      <h3>110</h3>
-      <p>this is what makes us the best. p.s.a. vaney made it even better.</p>
-    </div>
-    <div class="card">
-      <h3>dancehall</h3>
-      <p>the real bashment pon di radio . . .</p>
-    </div>
-    <div class="card">
-      <h3>latin heat</h3>
-      <p>salsa, merengue, cumbia, reggaeton and much more. para las rumberas y rumberos.</p>
-    </div>
-    <div class="card">
-      <h3>rock the house</h3>
-      <p>what you need when you want to go to 6th, but you're staying home.</p>
-    </div>
-  </div>
-</section>
+      if (!frame) return;
 
-<section id="merch">
-  <div class="section-title">// merch</div>
-  <p class="section-text">
-    represent the station.<br>
-    limited heart attack radio merch available now.
-  </p>
+      const radioAddress = "https://thehearttackradio.radio12345.com/";
+      const refreshAddress = radioAddress + "?refresh=" + Date.now();
 
-  <a class="merch-gate"
-     href="https://heartattackradio.bigcartel.com/"
-     target="_blank" rel="noopener noreferrer"
-     aria-label="enter the Heart Attack Radio merch store">
-    enter the store
-    <span class="merch-subtitle">the underground is calling</span>
-  </a>
-</section>
+      button.disabled = true;
+      button.textContent = "Refreshing...";
 
-<section id="social">
-  <div class="section-title">// follow the attack</div>
-  <div class="socials">
-    <a class="social" href="https://www.instagram.com/theheartattackradio/" target="_blank" rel="noopener noreferrer">instagram</a>
-    <a class="social" href="https://www.tiktok.com/@theheartattackradio" target="_blank" rel="noopener noreferrer">tiktok</a>
-    <a class="social" href="https://youtube.com/@theheartattackradio" target="_blank" rel="noopener noreferrer">youtube</a>
-    <a class="social" href="https://heartattackradio.bigcartel.com/" target="_blank" rel="noopener noreferrer">big cartel</a>
-  </div>
-</section>
+      frame.src = "about:blank";
 
-<footer>
-  <strong>heart attack radio</strong><br>
-  <span class="footer-green">austin, texas // worldwide</span><br><br>
-  <span class="footer-green">© 2026 heart attack radio</span><br>
-  <span class="footer-green">the radio station with the #1 listeners in austin...</span><br><br>
-  <span class="footer-green">best experienced with headphones or windows 98 perhaps.</span>
-</footer>
+      window.setTimeout(function () {
+        frame.src = refreshAddress;
 
-</div>
+        button.disabled = false;
+        button.textContent = "↻ Refresh Player";
+      }, 250);
+    }
 
-<script>
-function reloadHeartAttackRadio(){
-  const frame=document.getElementById("heartAttackRadioFrame");
-  const status=document.getElementById("radio-status");
-  if(!frame||!status)return;
-
-  status.textContent="reloading the embedded player...";
-  frame.src="https://thehearttackradio.radio12345.com/?refresh="+Date.now();
-
-  window.setTimeout(function(){
-    status.textContent=
-      "player refreshed. if audio has not started, press play inside the player or open the live player.";
-  },2200);
-}
-</script>
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+  </script>
 </body>
 </html>
