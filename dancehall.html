@@ -12,7 +12,8 @@
   <meta property="og:image" content="https://theheartattackradio.com/dancehall-assets/og.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="icon" type="image/png" href="dancehall-assets/crown-icon.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%27-14%20-24%20148%20148%27%3E%3Crect%20x%3D%27-14%27%20y%3D%27-24%27%20width%3D%27148%27%20height%3D%27148%27%20fill%3D%27%23000%27%2F%3E%3Cpolygon%20points%3D%274%2C86%204%2C30%2032%2C58%2060%2C6%2088%2C58%20116%2C30%20116%2C86%27%20fill%3D%27%23ffd400%27%20stroke%3D%27%23000%27%20stroke-width%3D%273%27%20stroke-linejoin%3D%27round%27%2F%3E%3Crect%20x%3D%274%27%20y%3D%2768%27%20width%3D%27112%27%20height%3D%2718%27%20fill%3D%27%23d71920%27%20stroke%3D%27%23000%27%20stroke-width%3D%273%27%2F%3E%3Ccircle%20cx%3D%274%27%20cy%3D%2730%27%20r%3D%278%27%20fill%3D%27%23d71920%27%20stroke%3D%27%23000%27%20stroke-width%3D%273%27%2F%3E%3Ccircle%20cx%3D%2760%27%20cy%3D%276%27%20r%3D%278%27%20fill%3D%27%2318ee1c%27%20stroke%3D%27%23000%27%20stroke-width%3D%273%27%2F%3E%3Ccircle%20cx%3D%27116%27%20cy%3D%2730%27%20r%3D%278%27%20fill%3D%27%23d71920%27%20stroke%3D%27%23000%27%20stroke-width%3D%273%27%2F%3E%3C%2Fsvg%3E">
+  <link rel="icon" type="image/png" sizes="180x180" href="dancehall-assets/crown-icon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="dancehall-assets/crown-icon.png">
   <meta name="apple-mobile-web-app-title" content="dancehall.texas">
 
@@ -42,13 +43,7 @@
       inset: 0;
       pointer-events: none;
       z-index: 9998;
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(255,255,255,.025) 0px,
-        rgba(255,255,255,.025) 1px,
-        transparent 1px,
-        transparent 4px
-      );
+      background: repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0px, rgba(255,255,255,.025) 1px, transparent 1px, transparent 4px);
       animation: scanmove .15s linear infinite;
     }
 
@@ -69,10 +64,7 @@
     @keyframes ticker { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
     @keyframes mediaMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     @keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
-    @keyframes signalPulse {
-      from { height: 4px; opacity: .45; }
-      to { height: 17px; opacity: 1; }
-    }
+    @keyframes signalPulse { from { height: 4px; opacity: .45; } to { height: 17px; opacity: 1; } }
 
     /* Main frame */
     .page {
@@ -80,11 +72,7 @@
       margin: 18px auto;
       background: #000;
       border: 4px solid #d71920;
-      box-shadow:
-        0 0 0 3px #000,
-        0 0 0 6px #fff,
-        0 0 0 9px #000,
-        0 0 30px rgba(215,25,32,.25);
+      box-shadow: 0 0 0 3px #000, 0 0 0 6px #fff, 0 0 0 9px #000, 0 0 30px rgba(215,25,32,.25);
     }
 
     .topbar {
@@ -127,9 +115,7 @@
       object-fit: contain;
       display: block;
       margin: 0 auto 10px;
-      filter:
-        drop-shadow(4px 4px 0 #d71920)
-        drop-shadow(-2px -2px 0 #fff);
+      filter: drop-shadow(4px 4px 0 #d71920) drop-shadow(-2px -2px 0 #fff);
     }
 
     .tagline {
@@ -188,9 +174,7 @@
       width: 96px;
       height: auto;
       margin: 0 auto 6px;
-      filter:
-        drop-shadow(4px 4px 0 #d71920)
-        drop-shadow(-2px -2px 0 #fff);
+      filter: drop-shadow(4px 4px 0 #d71920) drop-shadow(-2px -2px 0 #fff);
     }
 
     .hero h1 {
@@ -201,10 +185,7 @@
       overflow-wrap: anywhere;
       letter-spacing: 2px;
       line-height: .95;
-      text-shadow:
-        5px 5px 0 #d71920,
-        -2px -2px 0 #fff,
-        0 0 8px rgba(255,255,255,.25);
+      text-shadow: 5px 5px 0 #d71920, -2px -2px 0 #fff, 0 0 8px rgba(255,255,255,.25);
       animation: titleflicker 2.2s infinite alternate;
     }
 
@@ -636,36 +617,98 @@
       max-width: 620px;
     }
 
-    details.carousel { margin-top: 6px; }
-    details.carousel > summary {
-      list-style: none;
-    }
-    details.carousel > summary::-webkit-details-marker { display: none; }
-    details.carousel[open] > summary {
-      background: #d71920;
-      box-shadow: 4px 4px 0 #fff;
+    /* Slide viewer: one slide at a time, snap scrolling, autoplay */
+    .viewer { margin-top: 20px; max-width: 380px; }
+    .viewer[hidden] { display: none; }
+
+    .viewer-frame {
+      position: relative;
+      border: 3px solid #fff;
+      background: #000;
+      box-shadow: 6px 6px 0 #d71920;
     }
 
     .slides {
       display: flex;
-      gap: 20px;
-      margin: 22px 0 4px;
-      padding: 4px 8px 16px 4px;
+      aspect-ratio: 4 / 5;
       overflow-x: auto;
-      scroll-snap-type: x proximity;
-      scrollbar-color: #d71920 #050505;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
     }
+    .slides::-webkit-scrollbar { display: none; }
     .slides:focus-visible { outline: 2px dotted #fff; outline-offset: 4px; }
 
     .slides img {
-      width: 288px;
-      height: 360px;
-      flex-shrink: 0;
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       scroll-snap-align: start;
-      border: 3px solid #fff;
-      box-shadow: 5px 5px 0 #d71920;
+      scroll-snap-stop: always;
       background: #111;
+      user-select: none;
+      -webkit-user-drag: none;
     }
+
+    .arrow {
+      flex-shrink: 0;
+      width: 44px;
+      height: 38px;
+      padding: 0 0 4px;
+      border: 2px solid #fff;
+      background: #d71920;
+      color: #fff;
+      font-family: "VT323", monospace;
+      font-size: 30px;
+      line-height: 1;
+      box-shadow: 3px 3px 0 #fff;
+      cursor: pointer;
+      transition: .15s;
+    }
+    .arrow:hover, .arrow:focus-visible { background: #fff; color: #d71920; box-shadow: 3px 3px 0 #d71920; outline: none; }
+
+    .viewer-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .viewer-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 14px;
+      font-family: "VT323", monospace;
+      font-size: 19px;
+      color: #18ee1c;
+    }
+    .dots { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+    .dot {
+      width: 12px;
+      height: 12px;
+      padding: 0;
+      border: 2px solid #fff;
+      background: #000;
+      cursor: pointer;
+    }
+    .dot.on { background: #18ee1c; border-color: #18ee1c; box-shadow: 0 0 5px rgba(24,238,28,.5); }
+    .autoplay {
+      padding: 2px 10px;
+      border: 1px solid #18ee1c;
+      background: #071007;
+      color: #18ee1c;
+      font-family: "VT323", monospace;
+      font-size: 17px;
+      cursor: pointer;
+      text-transform: lowercase;
+    }
+    .autoplay:hover, .autoplay:focus-visible { background: #18ee1c; color: #000; outline: none; }
+
+    .series-sub { margin: -8px 0 12px; color: #18ee1c !important; font-family: "VT323", monospace; font-size: 18px !important; letter-spacing: 1px; }
 
     /* Timeline reuses the release-info list */
     .timeline .spec-label { min-width: 135px; font-size: 22px; }
@@ -752,7 +795,7 @@
       .panel { padding: 16px; }
       .series-body { grid-template-columns: 1fr; }
       .series-cover { max-width: 230px; }
-      .slides img { width: 230px; height: 288px; }
+      .viewer { max-width: 100%; }
       .socials { grid-template-columns: repeat(2, 1fr); }
       .timeline .spec-label { min-width: 82px; }
     }
@@ -847,39 +890,7 @@
 
       <div class="crate" aria-label="a scrolling row of record sleeves">
         <div class="crate-track">
-          <img class="sleeve" src="dancehall-assets/sleeves/duck-dance-competition.jpg" alt="duck dance competition" loading="lazy" width="104" height="104">
-          <img class="sleeve" src="dancehall-assets/sleeves/champion.jpg" alt="champion, steely & clevie" loading="lazy" width="104" height="104">
-          <div class="vinyl" aria-hidden="true"><div class="vinyl-label"></div><div class="vinyl-hole"></div></div>
-          <img class="sleeve" src="dancehall-assets/sleeves/x-tra-naked.jpg" alt="shabba ranks, x-tra naked" loading="lazy" width="104" height="104">
-          <img class="sleeve" src="dancehall-assets/sleeves/a-who-seh-me-dun.jpg" alt="cutty ranks, a who seh me dun" loading="lazy" width="104" height="104">
-          <img class="sleeve" src="dancehall-assets/sleeves/maestro.jpg" alt="beenie man, maestro" loading="lazy" width="104" height="104">
-          <div class="vinyl" aria-hidden="true"><div class="vinyl-label"></div><div class="vinyl-hole"></div></div>
-          <img class="sleeve" src="dancehall-assets/sleeves/nando-boom-reggae-espanol.jpg" alt="nando boom, reggae español" loading="lazy" width="104" height="104">
-          <img class="sleeve" src="dancehall-assets/sleeves/chicho-man-el-lover-boy.jpg" alt="chicho man, el lover boy" loading="lazy" width="104" height="104">
-          <img class="sleeve" src="dancehall-assets/sleeves/the-creation-4.jpg" alt="the creation 4, fuerza imbatible" loading="lazy" width="104" height="104">
-          <div class="vinyl" aria-hidden="true"><div class="vinyl-label"></div><div class="vinyl-hole"></div></div>
-          <img class="sleeve" src="dancehall-assets/sleeves/el-general-muevelo.jpg" alt="el general, muévelo" loading="lazy" width="104" height="104">
-          <img class="sleeve" src="dancehall-assets/sleeves/beany-man-10-year-old-dj.jpg" alt="beany man, the 10 year old d.j. wonder" loading="lazy" width="104" height="104">
-          <img class="sleeve" src="dancehall-assets/sleeves/ness-y-los-sensacionales.jpg" alt="ness y los sensacionales" loading="lazy" width="104" height="104">
-          <div class="vinyl" aria-hidden="true"><div class="vinyl-label"></div><div class="vinyl-hole"></div></div>
-          <img class="sleeve" src="dancehall-assets/sleeves/turbans-and-rastas.jpg" alt="turbans & rastas, heart attack radio" loading="lazy" width="104" height="104">
-          <img class="sleeve" src="dancehall-assets/sleeves/duck-dance-competition.jpg" alt="" aria-hidden="true" loading="lazy" width="104" height="104">
-          <img class="sleeve" src="dancehall-assets/sleeves/champion.jpg" alt="" aria-hidden="true" loading="lazy" width="104" height="104">
-          <div class="vinyl" aria-hidden="true"><div class="vinyl-label"></div><div class="vinyl-hole"></div></div>
-          <img class="sleeve" src="dancehall-assets/sleeves/x-tra-naked.jpg" alt="" aria-hidden="true" loading="lazy" width="104" height="104">
-          <img class="sleeve" src="dancehall-assets/sleeves/a-who-seh-me-dun.jpg" alt="" aria-hidden="true" loading="lazy" width="104" height="104">
-          <img class="sleeve" src="dancehall-assets/sleeves/maestro.jpg" alt="" aria-hidden="true" loading="lazy" width="104" height="104">
-          <div class="vinyl" aria-hidden="true"><div class="vinyl-label"></div><div class="vinyl-hole"></div></div>
-          <img class="sleeve" src="dancehall-assets/sleeves/nando-boom-reggae-espanol.jpg" alt="" aria-hidden="true" loading="lazy" width="104" height="104">
-          <img class="sleeve" src="dancehall-assets/sleeves/chicho-man-el-lover-boy.jpg" alt="" aria-hidden="true" loading="lazy" width="104" height="104">
-          <img class="sleeve" src="dancehall-assets/sleeves/the-creation-4.jpg" alt="" aria-hidden="true" loading="lazy" width="104" height="104">
-          <div class="vinyl" aria-hidden="true"><div class="vinyl-label"></div><div class="vinyl-hole"></div></div>
-          <img class="sleeve" src="dancehall-assets/sleeves/el-general-muevelo.jpg" alt="" aria-hidden="true" loading="lazy" width="104" height="104">
-          <img class="sleeve" src="dancehall-assets/sleeves/beany-man-10-year-old-dj.jpg" alt="" aria-hidden="true" loading="lazy" width="104" height="104">
-          <img class="sleeve" src="dancehall-assets/sleeves/ness-y-los-sensacionales.jpg" alt="" aria-hidden="true" loading="lazy" width="104" height="104">
-          <div class="vinyl" aria-hidden="true"><div class="vinyl-label"></div><div class="vinyl-hole"></div></div>
-          <img class="sleeve" src="dancehall-assets/sleeves/turbans-and-rastas.jpg" alt="" aria-hidden="true" loading="lazy" width="104" height="104">
-
+          <!-- filled by the script at the bottom -->
         </div>
       </div>
 
@@ -960,123 +971,7 @@
         four ways in. open a series to flip through the full instagram carousel.
       </p>
 
-      <div class="panel" id="series-duck">
-        <div class="panel-head">
-          <span>● series 01 // the records</span>
-          <span>7 slides</span>
-        </div>
-
-        <div class="series-body">
-          <img class="series-cover" src="dancehall-assets/slides/duck-1.jpg" alt="duck dance competition carousel cover" loading="lazy" width="190" height="238">
-          <div class="series-text">
-            <h2>duck dance competition</h2>
-            <p class="panel-note" style="margin-top:-8px;color:#18ee1c;font-family:'VT323',monospace;font-size:18px;letter-spacing:1px;">king jammys records, 1988</p>
-          <p>a 1988 dancehall compilation built around one riddim, produced by king jammys. nine voices ride the duck: admiral bailey, flourgon, daddy lizard, clement irie, ninja man, shaka demus, josey wales, horse man and red dragon.</p>
-
-            <details class="carousel">
-              <summary class="button button-green">▶ read the duck dance carousel</summary>
-              <div class="slides" tabindex="0" role="region" aria-label="duck dance competition carousel slides">
-          <img src="dancehall-assets/slides/duck-1.jpg" alt="duck dance competition, slide 1 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/duck-2.jpg" alt="duck dance competition, slide 2 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/duck-3.jpg" alt="duck dance competition, slide 3 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/duck-4.jpg" alt="duck dance competition, slide 4 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/duck-5.jpg" alt="duck dance competition, slide 5 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/duck-6.jpg" alt="duck dance competition, slide 6 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/duck-7.jpg" alt="duck dance competition, slide 7 of 7" loading="lazy" width="288" height="360">
-              </div>
-            </details>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel" id="series-flourgon">
-        <div class="panel-head">
-          <span>● series 02 // the artists</span>
-          <span>8 slides</span>
-        </div>
-
-        <div class="series-body">
-          <img class="series-cover" src="dancehall-assets/slides/flourgon-1.jpg" alt="flourgon carousel cover" loading="lazy" width="190" height="238">
-          <div class="series-text">
-            <h2>flourgon</h2>
-            <p class="panel-note" style="margin-top:-8px;color:#18ee1c;font-family:'VT323',monospace;font-size:18px;letter-spacing:1px;">michael may, jamaican deejay</p>
-          <p>born michael may in kingston, active from the mid-1980s. tutored by charlie chaplin, he deejayed on kingston sound systems and started his own, sweet love. debut: "big batty gal" (1986), produced by winston riley for techniques.</p>
-          <p>from the white hall avenue crew with red dragon, daddy lizard and sanchez.</p>
-
-            <details class="carousel">
-              <summary class="button button-green">▶ read the flourgon carousel</summary>
-              <div class="slides" tabindex="0" role="region" aria-label="flourgon carousel slides">
-          <img src="dancehall-assets/slides/flourgon-1.jpg" alt="flourgon, slide 1 of 8" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/flourgon-2.jpg" alt="flourgon, slide 2 of 8" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/flourgon-3.jpg" alt="flourgon, slide 3 of 8" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/flourgon-4.jpg" alt="flourgon, slide 4 of 8" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/flourgon-5.jpg" alt="flourgon, slide 5 of 8" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/flourgon-6.jpg" alt="flourgon, slide 6 of 8" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/flourgon-7.jpg" alt="flourgon, slide 7 of 8" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/flourgon-8.jpg" alt="flourgon, slide 8 of 8" loading="lazy" width="288" height="360">
-              </div>
-            </details>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel" id="series-romie">
-        <div class="panel-head">
-          <span>● series 03 // the tracks</span>
-          <span>7 slides</span>
-        </div>
-
-        <div class="series-body">
-          <img class="series-cover" src="dancehall-assets/slides/romie-1.jpg" alt="romie carousel cover" loading="lazy" width="190" height="238">
-          <div class="series-text">
-            <h2>romie</h2>
-            <p class="panel-note" style="margin-top:-8px;color:#18ee1c;font-family:'VT323',monospace;font-size:18px;letter-spacing:1px;">beenie man, 1996</p>
-          <p>the closing track on maestro (december 10, vp / greensleeves), riding the punanny nowadays riddim from shocking vibes. twenty-one years later, g-eazy and kehlani's "good life" sampled it.</p>
-
-            <details class="carousel">
-              <summary class="button button-green">▶ read the romie carousel</summary>
-              <div class="slides" tabindex="0" role="region" aria-label="romie carousel slides">
-          <img src="dancehall-assets/slides/romie-1.jpg" alt="romie, slide 1 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/romie-2.jpg" alt="romie, slide 2 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/romie-3.jpg" alt="romie, slide 3 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/romie-4.jpg" alt="romie, slide 4 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/romie-5.jpg" alt="romie, slide 5 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/romie-6.jpg" alt="romie, slide 6 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/romie-7.jpg" alt="romie, slide 7 of 7" loading="lazy" width="288" height="360">
-              </div>
-            </details>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel" id="series-panama">
-        <div class="panel-head">
-          <span>● series 04 // the roots</span>
-          <span>7 slides</span>
-        </div>
-
-        <div class="series-body">
-          <img class="series-cover" src="dancehall-assets/slides/panama-1.jpg" alt="panama: where reggae learned spanish carousel cover" loading="lazy" width="190" height="238">
-          <div class="series-text">
-            <h2>panama: where reggae learned spanish</h2>
-            <p class="panel-note" style="margin-top:-8px;color:#18ee1c;font-family:'VT323',monospace;font-size:18px;letter-spacing:1px;">part 1: the roots</p>
-          <p>from the combos nacionales and the west indian community of panama to super nandi, rasta nini, calito soul, renato, el general, nando boom, chicho man, tocky, cachako and ness y los sensacionales. and the 110 family: 110, reggae bultrón and romantic style.</p>
-
-            <details class="carousel">
-              <summary class="button button-green">▶ read the panama carousel</summary>
-              <div class="slides" tabindex="0" role="region" aria-label="panama: where reggae learned spanish carousel slides">
-          <img src="dancehall-assets/slides/panama-1.jpg" alt="panama: where reggae learned spanish, slide 1 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/panama-2.jpg" alt="panama: where reggae learned spanish, slide 2 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/panama-3.jpg" alt="panama: where reggae learned spanish, slide 3 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/panama-4.jpg" alt="panama: where reggae learned spanish, slide 4 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/panama-5.jpg" alt="panama: where reggae learned spanish, slide 5 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/panama-6.jpg" alt="panama: where reggae learned spanish, slide 6 of 7" loading="lazy" width="288" height="360">
-          <img src="dancehall-assets/slides/panama-7.jpg" alt="panama: where reggae learned spanish, slide 7 of 7" loading="lazy" width="288" height="360">
-              </div>
-            </details>
-          </div>
-        </div>
-      </div>
+      <div id="series-list"><!-- filled by the script at the bottom --></div>
 
     </section>
 
@@ -1130,5 +1025,143 @@
     </footer>
 
   </div>
+
+  <script>
+    /* the crate: 12 sleeves, listed twice so the loop is seamless */
+    var sleeves = ["duck-dance-competition", "champion", "x-tra-naked", "a-who-seh-me-dun", "maestro", "nando-boom-reggae-espanol", "chicho-man-el-lover-boy", "the-creation-4", "el-general-muevelo", "beany-man-10-year-old-dj", "ness-y-los-sensacionales", "turbans-and-rastas"];
+    var track = document.querySelector(".crate-track"), html = "";
+    for (var pass = 0; pass < 2; pass++) {
+      sleeves.forEach(function (s, i) {
+        html += '<img class="sleeve" src="dancehall-assets/sleeves/' + s + '.jpg" alt="" loading="lazy" width="104" height="104">';
+        if (i % 3 === 1) html += '<div class="vinyl" aria-hidden="true"><div class="vinyl-label"></div><div class="vinyl-hole"></div></div>';
+      });
+    }
+    track.innerHTML = html;
+
+    /* the series: key, number, label, title, sub, slide count, text, button */
+    var series = [
+      ["duck","01","the records","duck dance competition","king jammys records, 1988",7,
+        ["a 1988 dancehall compilation built around one riddim, produced by king jammys. nine voices ride the duck: admiral bailey, flourgon, daddy lizard, clement irie, ninja man, shaka demus, josey wales, horse man and red dragon."],"read the duck dance carousel"],
+      ["flourgon","02","the artists","flourgon","michael may, jamaican deejay",8,
+        ["born michael may in kingston, active from the mid-1980s. tutored by charlie chaplin, he deejayed on kingston sound systems and started his own, sweet love. debut: \"big batty gal\" (1986), produced by winston riley for techniques.","from the white hall avenue crew with red dragon, daddy lizard and sanchez."],"read the flourgon carousel"],
+      ["romie","03","the tracks","romie","beenie man, 1996",7,
+        ["the closing track on maestro (december 10, vp / greensleeves), riding the punanny nowadays riddim from shocking vibes. twenty-one years later, g-eazy and kehlani's \"good life\" sampled it."],"read the romie carousel"],
+      ["panama","04","the roots","panama: where reggae learned spanish","part 1: the roots",7,
+        ["from the combos nacionales and the west indian community of panama to super nandi, rasta nini, calito soul, renato, el general, nando boom, chicho man, tocky, cachako and ness y los sensacionales. and the 110 family: 110, reggae bultr\u00f3n and romantic style."],"read the panama carousel"]
+    ];
+    var out = "";
+    series.forEach(function (s) {
+      var imgs = "";
+      for (var i = 1; i <= s[5]; i++) imgs += '<img data-src="dancehall-assets/slides/' + s[0] + '-' + i + '.jpg" alt="' + s[3] + ', slide ' + i + ' of ' + s[5] + '" draggable="false">';
+      out += '<div class="panel" id="series-' + s[0] + '">' +
+        '<div class="panel-head"><span>\u25cf series ' + s[1] + ' // ' + s[2] + '</span><span>' + s[5] + ' slides</span></div>' +
+        '<div class="series-body"><img class="series-cover" src="dancehall-assets/slides/' + s[0] + '-1.jpg" alt="' + s[3] + ' carousel cover" loading="lazy" width="190" height="238">' +
+        '<div class="series-text"><h2>' + s[3] + '</h2>' +
+        '<p class="series-sub">' + s[4] + '</p>' +
+        s[6].map(function (p) { return "<p>" + p + "</p>"; }).join("") +
+        '<button class="button button-green open-btn" type="button" aria-expanded="false">\u25b6 ' + s[7] + '</button>' +
+        '<div class="viewer" hidden>' +
+          '<div class="viewer-frame">' +
+            '<div class="slides" tabindex="0" role="region" aria-label="' + s[3] + ' carousel slides">' + imgs + '</div>' +
+          '</div>' +
+          '<div class="viewer-bar">' +
+            '<button class="arrow prev" type="button" aria-label="previous slide">\u2039</button>' +
+            '<div class="dots"></div>' +
+            '<button class="arrow next" type="button" aria-label="next slide">\u203a</button>' +
+          '</div>' +
+          '<div class="viewer-meta"><span class="count">1 / ' + s[5] + '</span>' +
+          '<button class="autoplay" type="button">\u275a\u275a pause</button></div>' +
+        '</div>' +
+        '</div></div></div>';
+    });
+    document.getElementById("series-list").innerHTML = out;
+
+    /* slide viewer: snap scrolling, arrows, dots, swipe, autoplay */
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var AUTO_MS = 3800;
+
+    document.querySelectorAll(".panel").forEach(function (panel) {
+      var openBtn = panel.querySelector(".open-btn");
+      var viewer = panel.querySelector(".viewer");
+      var track = panel.querySelector(".slides");
+      var imgs = track.querySelectorAll("img");
+      var dotsBox = panel.querySelector(".dots");
+      var count = panel.querySelector(".count");
+      var autoBtn = panel.querySelector(".autoplay");
+      var n = imgs.length, idx = 0, timer = null, paused = false, hovering = false, touching = false;
+
+      for (var d = 0; d < n; d++) {
+        (function (k) {
+          var b = document.createElement("button");
+          b.type = "button"; b.className = "dot"; b.setAttribute("aria-label", "go to slide " + (k + 1));
+          b.addEventListener("click", function () { go(k); userTouched(); });
+          dotsBox.appendChild(b);
+        })(d);
+      }
+      var dots = dotsBox.children;
+
+      function mark(i) {
+        idx = i;
+        count.textContent = (i + 1) + " / " + n;
+        for (var k = 0; k < dots.length; k++) dots[k].classList.toggle("on", k === i);
+      }
+      function go(i, instant) {
+        i = (i + n) % n;
+        track.scrollTo({ left: i * track.clientWidth, behavior: (instant || reduceMotion) ? "auto" : "smooth" });
+        mark(i);
+      }
+      var raf = null;
+      track.addEventListener("scroll", function () {
+        if (raf) return;
+        raf = requestAnimationFrame(function () {
+          raf = null;
+          var i = Math.round(track.scrollLeft / track.clientWidth);
+          if (i !== idx) mark(i);
+        });
+      }, { passive: true });
+
+      function tick() {
+        if (paused || hovering || touching || viewer.hidden || document.hidden) return;
+        var next = (idx + 1) % n;
+        go(next, next === 0);
+      }
+      function startAuto() { stopAuto(); if (!reduceMotion) timer = setInterval(tick, AUTO_MS); }
+      function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
+      var resumeT = null;
+      function userTouched() {
+        touching = true; clearTimeout(resumeT);
+        resumeT = setTimeout(function () { touching = false; }, 6000);
+      }
+
+      panel.querySelector(".prev").addEventListener("click", function () { go(idx - 1); userTouched(); });
+      panel.querySelector(".next").addEventListener("click", function () { go(idx + 1); userTouched(); });
+      track.addEventListener("pointerdown", userTouched);
+      track.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") { e.preventDefault(); go(idx - 1); userTouched(); }
+        if (e.key === "ArrowRight") { e.preventDefault(); go(idx + 1); userTouched(); }
+      });
+      viewer.addEventListener("mouseenter", function () { hovering = true; });
+      viewer.addEventListener("mouseleave", function () { hovering = false; });
+      autoBtn.addEventListener("click", function () {
+        paused = !paused;
+        autoBtn.textContent = paused ? "\u25b6 play" : "\u275a\u275a pause";
+      });
+      window.addEventListener("resize", function () { go(idx, true); });
+
+      openBtn.addEventListener("click", function () {
+        var opening = viewer.hidden;
+        viewer.hidden = !opening;
+        openBtn.setAttribute("aria-expanded", String(opening));
+        openBtn.style.background = opening ? "#d71920" : "";
+        openBtn.style.boxShadow = opening ? "4px 4px 0 #fff" : "";
+        if (opening) {
+          imgs.forEach(function (im) { if (!im.src) im.src = im.dataset.src; });
+          mark(0); track.scrollLeft = 0;
+          if (reduceMotion) { paused = true; autoBtn.hidden = true; }
+          startAuto();
+        } else { stopAuto(); }
+      });
+    });
+  </script>
 </body>
 </html>
