@@ -708,6 +708,24 @@
     }
     .autoplay:hover, .autoplay:focus-visible { background: #18ee1c; color: #000; outline: none; }
 
+    /* Music player under the slides */
+    .music { margin-top: 20px; }
+    .music-label {
+      margin: 0 0 8px;
+      color: #18ee1c;
+      font-family: "VT323", monospace;
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+    .music-label::before { content: "\25cf "; color: #d71920; animation: blink 1s infinite; }
+    .music-frame {
+      aspect-ratio: 16 / 9;
+      border: 3px solid #fff;
+      background: #000;
+      box-shadow: 6px 6px 0 #d71920;
+    }
+    .music-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+
     .series-sub { margin: -8px 0 12px; color: #18ee1c !important; font-family: "VT323", monospace; font-size: 18px !important; letter-spacing: 1px; }
 
     /* Timeline reuses the release-info list */
@@ -1038,16 +1056,16 @@
     }
     track.innerHTML = html;
 
-    /* the series: key, number, label, title, sub, slide count, text, button */
+    /* the series: key, number, label, title, sub, slide count, text, button, youtube video id */
     var series = [
       ["duck","01","the records","duck dance competition","king jammys records, 1988",7,
-        ["a 1988 dancehall compilation built around one riddim, produced by king jammys. nine voices ride the duck: admiral bailey, flourgon, daddy lizard, clement irie, ninja man, shaka demus, josey wales, horse man and red dragon."],"read the duck dance carousel"],
+        ["a 1988 dancehall compilation built around one riddim, produced by king jammys. nine voices ride the duck: admiral bailey, flourgon, daddy lizard, clement irie, ninja man, shaka demus, josey wales, horse man and red dragon."],"read the duck dance carousel","isFb1VXSS8c"],
       ["flourgon","02","the artists","flourgon","michael may, jamaican deejay",8,
-        ["born michael may in kingston, active from the mid-1980s. tutored by charlie chaplin, he deejayed on kingston sound systems and started his own, sweet love. debut: \"big batty gal\" (1986), produced by winston riley for techniques.","from the white hall avenue crew with red dragon, daddy lizard and sanchez."],"read the flourgon carousel"],
+        ["born michael may in kingston, active from the mid-1980s. tutored by charlie chaplin, he deejayed on kingston sound systems and started his own, sweet love. debut: \"big batty gal\" (1986), produced by winston riley for techniques.","from the white hall avenue crew with red dragon, daddy lizard and sanchez."],"read the flourgon carousel","ZTS9WZBZQsU"],
       ["romie","03","the tracks","romie","beenie man, 1996",7,
-        ["the closing track on maestro (december 10, vp / greensleeves), riding the punanny nowadays riddim from shocking vibes. twenty-one years later, g-eazy and kehlani's \"good life\" sampled it."],"read the romie carousel"],
+        ["the closing track on maestro (december 10, vp / greensleeves), riding the punanny nowadays riddim from shocking vibes. twenty-one years later, g-eazy and kehlani's \"good life\" sampled it."],"read the romie carousel","LIvzXXB7kgU"],
       ["panama","04","the roots","panama: where reggae learned spanish","part 1: the roots",7,
-        ["from the combos nacionales and the west indian community of panama to super nandi, rasta nini, calito soul, renato, el general, nando boom, chicho man, tocky, cachako and ness y los sensacionales. and the 110 family: 110, reggae bultr\u00f3n and romantic style."],"read the panama carousel"]
+        ["from the combos nacionales and the west indian community of panama to super nandi, rasta nini, calito soul, renato, el general, nando boom, chicho man, tocky, cachako and ness y los sensacionales. and the 110 family: 110, reggae bultr\u00f3n and romantic style."],"read the panama carousel","B_FHSHuwAKQ"]
     ];
     var out = "";
     series.forEach(function (s) {
@@ -1071,16 +1089,35 @@
           '</div>' +
           '<div class="viewer-meta"><span class="count">1 / ' + s[5] + '</span>' +
           '<button class="autoplay" type="button">\u275a\u275a pause</button></div>' +
+          '<div class="music"><p class="music-label">now playing</p><div class="music-frame"><div class="yt-slot"></div></div></div>' +
         '</div>' +
         '</div></div></div>';
     });
     document.getElementById("series-list").innerHTML = out;
 
+    /* music: one YouTube player per series, starts when a carousel opens */
+    var ytReady = false, ytQueue = [], ytRequested = false, stoppers = [];
+    window.onYouTubeIframeAPIReady = function () {
+      ytReady = true;
+      ytQueue.forEach(function (fn) { fn(); });
+      ytQueue = [];
+    };
+    function whenYT(fn) {
+      if (ytReady) { fn(); return; }
+      ytQueue.push(fn);
+      if (!ytRequested) {
+        ytRequested = true;
+        var s = document.createElement("script");
+        s.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(s);
+      }
+    }
+
     /* slide viewer: snap scrolling, arrows, dots, swipe, autoplay */
     var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var AUTO_MS = 3800;
 
-    document.querySelectorAll(".panel").forEach(function (panel) {
+    document.querySelectorAll(".panel").forEach(function (panel, pi) {
       var openBtn = panel.querySelector(".open-btn");
       var viewer = panel.querySelector(".viewer");
       var track = panel.querySelector(".slides");
@@ -1089,6 +1126,27 @@
       var count = panel.querySelector(".count");
       var autoBtn = panel.querySelector(".autoplay");
       var n = imgs.length, idx = 0, timer = null, paused = false, hovering = false, touching = false;
+
+      var slot = panel.querySelector(".yt-slot"), player = null, wantMusic = false;
+      function playMusic() {
+        stoppers.forEach(function (stop) { if (stop !== stopMusic) stop(); });
+        wantMusic = true;
+        whenYT(function () {
+          if (!wantMusic) return;
+          if (!player) {
+            player = new YT.Player(slot, {
+              videoId: series[pi][8], width: "100%", height: "100%",
+              playerVars: { autoplay: 1, rel: 0, playsinline: 1, modestbranding: 1 },
+              events: { onReady: function (e) { if (wantMusic) e.target.playVideo(); } }
+            });
+          } else if (player.playVideo) { player.playVideo(); }
+        });
+      }
+      function stopMusic() {
+        wantMusic = false;
+        if (player && player.pauseVideo) player.pauseVideo();
+      }
+      stoppers.push(stopMusic);
 
       for (var d = 0; d < n; d++) {
         (function (k) {
@@ -1159,7 +1217,8 @@
           mark(0); track.scrollLeft = 0;
           if (reduceMotion) { paused = true; autoBtn.hidden = true; }
           startAuto();
-        } else { stopAuto(); }
+          playMusic();
+        } else { stopAuto(); stopMusic(); }
       });
     });
   </script>
